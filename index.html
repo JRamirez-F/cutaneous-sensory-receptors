@@ -1,0 +1,926 @@
+<!doctype html>
+<!--
+Cutaneous Sensory Receptors — academic educational simulator.
+Created by Jorge Ramírez Franco and ChatGPT (OpenAI).
+Department of Physiology · Complutense University of Madrid.
+NONCOMMERCIAL TERMS:
+Software (HTML/CSS/JavaScript): PolyForm Noncommercial License 1.0.0
+https://polyformproject.org/licenses/noncommercial/1.0.0
+Educational text and original SVG artwork: CC BY-NC 4.0
+https://creativecommons.org/licenses/by-nc/4.0/
+Licenses apply only to contributions the licensor has authority to license.
+Cited third-party publications and their linked content are not relicensed.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cutaneous Sensory Receptors · Interactive Physiology Lab</title>
+<style>
+:root{color-scheme:dark;--bg:#071722;--panel:#102936;--panel2:#0b2230;--stroke:#294b59;--fg:#e8f7fa;--muted:#a4bdc6;--teal:#69e6da;--cool:#68caff;--coldpain:#a9a7ff;--warm:#ffc477;--heat:#ff8694}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse 900px 450px at 85% -30%,#123b4b 0%,transparent 70%),var(--bg);color:var(--fg);font:14px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}button,input{font:inherit}button{border:1px solid #3a6472;background:#183c49;color:var(--fg);border-radius:9px;padding:9px 12px;cursor:pointer}button:hover{border-color:var(--teal)}button.active{background:#20565b;border-color:var(--teal);color:#fff}button.primary{background:var(--teal);border-color:var(--teal);color:#083038;font-weight:800}button:focus-visible,input:focus-visible,.clickable:focus-visible{outline:2px solid #fff;outline-offset:3px}button:disabled{opacity:.45;cursor:not-allowed}.app{max-width:1360px;margin:auto;padding:22px}.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9dc1c7;font-weight:700}.pagehead{display:flex;align-items:end;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:20px}.pagehead h1{font-size:clamp(24px,3vw,33px);line-height:1.2;letter-spacing:-.04em;margin:3px 0 7px}.pagehead p{color:var(--muted);margin:0}.switcher{display:flex;gap:8px;padding:6px;background:#0c2633;border:1px solid var(--stroke);border-radius:13px}.switcher button{min-width:155px;padding:12px 16px;font-size:15px;font-weight:700}.module[hidden]{display:none!important}.layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:15px;align-items:start}.aside{position:sticky;top:15px}.main{display:grid;gap:15px;min-width:0}.panel{border-radius:13px;background:var(--panel);border:1px solid var(--stroke);padding:17px;min-width:0}.panel h2{font-size:16px;margin:0 0 10px}.panel h3{font-size:18px;margin:2px 0 10px}.muted,.note{color:var(--muted)}.note{font-size:12px;line-height:1.65}.field{margin:20px 0}.field label{display:flex;justify-content:space-between;font-weight:700;gap:8px;margin-bottom:9px}.field output{color:var(--teal);font-variant-numeric:tabular-nums}.field input[type=range]{width:100%;accent-color:var(--teal)}.field input:disabled{opacity:.35}.inlinebuttons{display:flex;gap:7px;flex-wrap:wrap}.inlinebuttons button{flex:1}.wide{width:100%;margin-top:8px}.smalltext{font-size:12px}.topline{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}.status{color:#a1eadd;font-variant-numeric:tabular-nums}.progress{background:#244452;border-radius:9px;height:5px;overflow:hidden;margin-top:10px}.progress>div{height:100%;background:var(--teal);width:0}.skin-svg{width:100%;max-height:245px;display:block}.clickable{cursor:pointer}.clickable .halo{opacity:0;transition:opacity .15s}.clickable.selected .outline{stroke:#fff;stroke-width:3}.clickable text{pointer-events:none}.records-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.viewbuttons{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.viewbuttons button{padding:7px 11px}.viewbuttons button.zoom{font-size:19px;line-height:1;font-weight:800;min-width:40px}.rowrecord{display:grid;grid-template-columns:164px minmax(0,1fr);gap:10px;align-items:center;padding:10px;border:1px solid #294956;background:#0a202d;border-radius:9px;margin:8px 0;min-width:0}.rowrecord.stimrow{border-color:#3b7772;background:#0e2c36}.rowrecord.selected{border-color:var(--teal);background:#113440}.rowrecord strong{display:block;font-size:13px}.rowrecord small{display:block;color:var(--muted);font-size:11px}.rowrecord .rate{font-size:12px;margin-top:6px;color:#8ceadf;font-variant-numeric:tabular-nums}.record-label{min-width:0}.plot{display:block;width:100%;height:92px;background:#061b28;border-radius:7px;touch-action:none;cursor:grab}.plot.dragging{cursor:grabbing}.caption{font-size:11px;color:#aac6cc}.infobox{border-radius:10px;background:#153842;border:1px solid #35616a;padding:13px;margin:13px 0}.infobox strong{display:block;margin-bottom:6px;color:#a4efe6}.infobox p{margin:0;color:#dae9ed;line-height:1.7}.prediction{border-left:3px solid var(--teal);padding-left:12px;color:#9ce7dd;margin-top:12px}.reading{font-size:13px;line-height:1.7;color:#d3e8ec;margin:8px 0 0}.pill{border:1px solid #4a7080;border-radius:999px;padding:3px 9px;color:#b9d8df;font-size:11px}.thermoSlider{-webkit-appearance:none;appearance:none;height:13px;border-radius:100px;background:linear-gradient(90deg,#5d77ff 0%,#77ceff 30%,#a6dec3 54%,#ffc975 70%,#ff718c 100%);outline:none;width:100%}.thermoSlider::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border:3px solid #fff;background:#17323f;border-radius:50%;box-shadow:0 2px 8px #0008}.thermoSlider::-moz-range-thumb{width:18px;height:18px;border:3px solid #fff;background:#17323f;border-radius:50%}.thermoRead{display:grid;grid-template-columns:1fr 1fr;gap:8px}.thermoRead>div{background:#092333;border:1px solid #315567;border-radius:10px;padding:10px}.bigread{display:block;font-variant-numeric:tabular-nums;font-size:25px;font-weight:750;letter-spacing:-.04em}.calibline{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:7px}.thermoKey{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:12px;font-size:12px}.thermoKey span{display:flex;gap:6px;align-items:center}.swatch{display:inline-block;width:11px;height:11px;border-radius:3px}.refcols{margin-top:12px;font-size:12px;line-height:1.6}.refcols a{color:#a3e8f0;overflow-wrap:anywhere}.refcols p{margin:6px 0}.curvebox{margin-top:13px;border:1px solid var(--stroke);border-radius:10px;background:#0a2230;padding:10px}.curvecanvas{display:block;width:100%;height:185px}.moduleintro{margin:0 0 16px;color:var(--muted);font-size:13px}.timelegend{display:flex;flex-wrap:wrap;gap:13px;margin:9px 0 12px;color:var(--muted);font-size:11px}.timelegend b{height:9px;width:13px;display:inline-block;vertical-align:middle;margin-right:5px;border-radius:2px}.miniBadge{color:#ffe0a9}.tunefoot{font-size:11px;color:#b3cbd4;margin-top:5px}@media(max-width:900px){.layout{grid-template-columns:1fr}.aside{position:static}.switcher button{min-width:120px}}@media(max-width:600px){.app{padding:12px}.rowrecord{grid-template-columns:1fr}.pagehead{align-items:stretch}.switcher{width:100%}.switcher button{flex:1;min-width:0}.plot{height:104px}}
+
+/* Evidence-based bibliography and receptor-specific reading links */
+.related-references{margin-top:15px;padding-top:13px;border-top:1px solid var(--stroke)}
+.related-references>strong{display:block;color:#a9d9df;font-size:12px;margin-bottom:9px}
+.reference-shortcuts{display:flex;flex-wrap:wrap;gap:7px}
+.reference-shortcuts a{display:inline-block;border:1px solid #476973;border-radius:7px;padding:6px 9px;color:#b6eae8;font-size:11px;text-decoration:none;line-height:1.5}
+.reference-shortcuts a:hover,.reference-shortcuts a:focus-visible{background:#194854;border-color:#77e3d7;color:white}
+.ref-counter{font-size:11px;font-weight:500;color:var(--muted)}
+.bib-toggle{cursor:pointer;color:#9af0e4;font-size:13px;font-weight:700;padding:10px 0}
+.bib-hint{font-weight:400;color:var(--muted)}
+.reference-list{list-style:none;counter-reset:papers;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:12px;padding:0;margin:12px 0 4px}
+.reference-item{padding:13px;border:1px solid #33535e;background:#0c2531;border-radius:9px;min-width:0}
+.ref-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ref-index{background:#214f59;color:#a8fff4;border-radius:4px;padding:2px 6px;font-size:11px;font-weight:800}
+.ref-tag{color:#b7d3dc;font-size:11px}
+.ref-citation{font-size:12px;color:#e6f3f4;margin:8px 0;line-height:1.65;overflow-wrap:anywhere}
+.ref-explainer{font-size:12px;color:#b1cad0;margin:8px 0 10px;line-height:1.6}
+.reference-item a{color:#8deddf;font-size:12px;text-decoration:underline;text-underline-offset:3px}
+.reference-item a:hover{color:white}
+
+/* Mechanical anatomical illustration: horizontal scrolling on narrow screens. */
+#m-skin{max-height:none;width:100%;height:auto;min-width:690px}
+.mech-art-scroll{overflow-x:auto;border-radius:10px;scrollbar-width:thin}
+
+/* Keep the complete mechanoreceptor SVG visible on narrow screens.
+   Desktop retains its original scale; only mobile overrides the
+   older 690px minimum that forced horizontal scrolling. */
+@media (max-width: 720px) {
+  .mech-art-scroll { width: 100%; overflow-x: visible; }
+  #m-skin { min-width: 0; width: 100%; max-width: 100%; height: auto; }
+}
+
+/* Thermal silhouettes follow a user-supplied free-ending SVG (four separately selectable copies). */
+#t-skin .clickable .outline{transition:filter .18s,stroke .18s;paint-order:stroke fill}
+#t-skin .clickable.selected .outline{stroke:#dff7ff;stroke-width:1.4}
+#t-skin .clickable:hover .outline{filter:brightness(1.24)}
+#t-skin .clickable{outline:none}
+#t-skin .clickable:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+
+.header-actions{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
+.language-switch{display:inline-flex;gap:3px;border:1px solid #436671;padding:3px;border-radius:10px;background:#0a2330}
+.language-switch button{border:0;padding:7px 11px;background:transparent;min-width:38px;font-weight:700}
+.language-switch button.active{background:#24595a;border:0;color:#c8fff2}
+@media(max-width:720px){.header-actions{width:100%;justify-content:space-between}.language-switch{flex-shrink:0}}
+
+.project-credit {
+  margin:22px 0 6px;
+  padding:16px 10px 4px;
+  border-top:1px solid var(--stroke);
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+  text-align:center;
+}
+
+.credit-department { display:block; margin-top:4px; color:var(--muted) }
+
+.license-notice{margin-top:10px;font-size:11px;line-height:1.7;color:var(--muted)}
+.license-notice a{color:#9bdedc;text-decoration:underline;text-underline-offset:3px}
+.license-notice a:hover,.license-notice a:focus-visible{color:white}
+@media(max-width:600px){.license-separator{display:none}.license-notice a{display:block;margin-top:3px}}
+
+/* Prediction Mode is a self-contained learning layer; physiological models are unchanged. */
+.study-mode{display:inline-flex;align-items:center;gap:3px;border:1px solid #436671;padding:3px;border-radius:10px;background:#0a2330}
+.study-mode button{border:0;padding:7px 12px;background:transparent;font-size:13px;font-weight:750}
+.study-mode button.active{background:#24595a;border:0;color:#c8fff2}
+.module .quiz-panel,.module .quiz-anatomy-hidden{display:none}
+.module.pred-active .quiz-panel{display:block}
+.module.pred-active:not(.pred-revealed) .pred-secret{display:none!important}
+.module.pred-active:not(.pred-revealed) .quiz-anatomy-hidden{display:block}
+.module.pred-active:not(.pred-revealed) .thermoKey{display:none!important}
+.module.pred-active:not(.pred-revealed) .rowrecord.selected{border-color:#294956;background:#0a202d}
+.module.pred-active:not(.pred-revealed) .rowrecord .rate{color:#c7d7e1}
+.quiz-anatomy-hidden{background:#0a2634;border:1px dashed #446977;border-radius:13px;padding:21px;margin-bottom:12px;text-align:center;color:#afccd2}
+.quiz-anatomy-hidden .quiz-icon{font-size:29px;opacity:.75;line-height:1.2;margin-bottom:9px}
+.quiz-panel{border-color:#477879;background:linear-gradient(145deg,#143741,#102b39 80%)}
+.quiz-panel h2{margin:0 0 6px;font-size:18px}
+.quiz-instructions{color:#c1d8dd;margin:0 0 11px;font-size:13px}
+.quiz-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.quiz-actions button{min-height:39px}
+.quiz-status{font-size:13px;line-height:1.5;color:#adddd5;min-height:1.5em;margin:9px 0 0;white-space:normal}
+.quiz-select-wrap{display:none;margin-top:8px}
+.module.pred-active:not(.pred-revealed) .quiz-select-wrap{display:block}
+.quiz-select{appearance:auto;display:block;color:#e7f8f7;background:#173744;border:1px solid #6b919b;border-radius:7px;padding:9px 29px 9px 8px;min-height:42px;width:100%;max-width:235px;font:inherit;font-size:12px}
+.quiz-select:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.quiz-mark{display:none;font-size:12px;margin:5px 0 0;font-weight:650}
+.quiz-mark.ok{color:#87e7b0}
+.quiz-mark.bad{color:#ffc5ac}
+.module.pred-active .quiz-mark.shown{display:block}
+.rowrecord.quiz-correct{border-color:#4c9778}
+.rowrecord.quiz-incorrect{border-color:#a16f60}
+.module.pred-active.pred-revealed .rowrecord strong{color:#cdf7e9}
+@media(max-width:650px){.study-mode{flex:1;justify-content:center}.study-mode button{flex:1}.quiz-actions button{flex:1 1 125px}.quiz-select{max-width:100%}}
+
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="pagehead">
+    <div><div class="eyebrow">Interactive physiology laboratory</div><h1>Cutaneous sensory receptors</h1><p>From mechanical forces to changes in skin temperature</p></div>
+    <div class="header-actions">
+      <div class="language-switch" role="group" aria-label="Language / Idioma">
+        <button id="lang-es" data-locale="es" aria-pressed="false" title="Español (España)">ES</button>
+        <button id="lang-en" data-locale="en" aria-pressed="true" class="active" title="English">EN</button>
+      </div>
+      <div class="study-mode" role="group" aria-label="Study mode / Modo de estudio">
+        <button id="study-explore" class="active" aria-pressed="true">Explore</button>
+        <button id="study-predict" aria-pressed="false">Prediction mode</button>
+      </div>
+    <nav class="switcher" role="tablist" aria-label="Sensory modality">
+      <button id="tab-mech" class="active" role="tab" aria-selected="true" aria-controls="module-mech">◉ Mechanoreception</button>
+      <button id="tab-therm" role="tab" aria-selected="false" aria-controls="module-therm">◉ Temperature</button>
+    </nav>
+    </div>
+  </header>
+
+  <section class="module" id="module-mech" role="tabpanel" aria-labelledby="tab-mech">
+    <p class="moduleintro">Explore how cutaneous afferents respond to sustained pressure and vibration.</p>
+    <div class="layout">
+      <aside class="panel aside">
+        <h2>Mechanical stimulus</h2>
+        <div class="field"><label>Stimulus type</label><div class="inlinebuttons"><button id="m-pressure" class="active">Pressure</button><button id="m-vibration">Vibration</button></div></div>
+        <div class="field"><label for="m-intensity">Intensity <output id="m-intensityOut">60%</output></label><input id="m-intensity" type="range" min="0" max="100" value="60"><div class="note">Relative intensity; not calibrated to kPa</div></div>
+        <div class="field"><label for="m-duration">Duration <output id="m-durationOut">4.0 s</output></label><input id="m-duration" type="range" min="1" max="8" step=".5" value="4"></div>
+        <div class="field"><label for="m-frequency">Vibration frequency <output id="m-frequencyOut">30 Hz</output></label><input id="m-frequency" type="range" min="5" max="350" step="5" value="30" disabled></div>
+        <button class="primary wide" id="m-run">▶ Apply stimulus</button><button class="wide" id="m-reset">Reset recording</button>
+        <p class="note" style="margin-top:20px">Suggested comparisons: pressure at 60%; vibration at 30 Hz vs 250 Hz; pressure at 90%. The nociceptor recruitment threshold is an illustrative 78%.</p>
+      </aside>
+      <div class="main">
+        <section class="panel pred-secret">
+          <div class="topline"><h2>Cutaneous receptor locations</h2><small class="muted">Select a receptor</small></div>
+          <div class="mech-art-scroll">
+<svg xmlns="http://www.w3.org/2000/svg" id="m-skin" class="skin-svg" viewBox="0 0 1440 800" role="img" aria-labelledby="title desc">
+<title id="title">Cutaneous mechanoreceptors — free nerve endings and tactile receptors</title>
+<desc id="desc">Glabrous skin with Meissner corpuscle in a dermal papilla, Merkel cell-neurite complex at the basal epidermis, epidermal free nerve endings of mechanical nociceptors, a possible SA II deep ending, and a lamellated Pacinian corpuscle at the deep dermis/hypodermis. All five receptor groups are distinct SVG groups for use in an interactive teaching simulator.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#081C29" /><stop offset="1" stop-color="#061522" /></linearGradient>
+  <linearGradient id="epi" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#345969" /><stop offset="1" stop-color="#234A5B" /></linearGradient>
+  <linearGradient id="dermis" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#173D4B" /><stop offset="1" stop-color="#163746" /></linearGradient>
+  <linearGradient id="fat" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#1B3444" /><stop offset="1" stop-color="#223646" /></linearGradient>
+  <radialGradient id="pacinianBody"><stop stop-color="#265D6F" /><stop offset=".8" stop-color="#1A4556" /><stop offset="1" stop-color="#153644" /></radialGradient>
+  <radialGradient id="capsule"><stop stop-color="#345F69" /><stop offset="1" stop-color="#1D4253" /></radialGradient>
+  <filter id="glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="6" /></filter>
+  <filter id="shadow" x="-25%" y="-30%" width="150%" height="180%"><feDropShadow dx="0" dy="4" stdDeviation="7" flood-color="#000" flood-opacity=".24" /></filter>
+  <clipPath id="skinclip"><rect x="62" y="153" width="1316" height="492" rx="12" fill="#112A38" /></clipPath>
+</defs>
+<style>
+  text{font-family:Inter,Arial,Helvetica,sans-serif}
+  .layername{font-weight:750;font-size:17px;letter-spacing:.04em;fill:#d1e5ec}
+  .layerdetail{font-size:12px;fill:#91b0bb}
+  .axon{fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+  .axonHighlight{fill:none;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;opacity:.08}
+  .nerve{fill:none;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+  .clickable{cursor:pointer}
+  .clickable .halo{opacity:.12}
+  .clickable:hover .halo,.clickable.selected .halo{opacity:.45}
+  .clickable .outline{transition:stroke-width .12s}
+  .clickable:hover .outline,.clickable.selected .outline{stroke:#fff;stroke-width:4}
+  .labelname{font-size:19px;font-weight:750;fill:#F2FBFF}
+  .labeldetail{font-size:13px;fill:#A9C7D1}
+  .labelnumber{font-size:14px;font-weight:850;fill:#071B27;text-anchor:middle}
+</style>
+<rect width="1440" height="800" fill="url(#bg)" />
+
+<text x="70" y="60" font-size="17" font-weight="800" letter-spacing="2.6" fill="#75D8D1">HUMAN GLABROUS SKIN  /  MECHANORECEPTION</text>
+<text x="70" y="112" font-size="37" font-weight="750" fill="#F0FBFF">Afferent endings across skin layers</text>
+
+
+<g clip-path="url(#skinclip)">
+ <rect x="62" y="153" width="1316" height="492" fill="#112A38" />
+ <path d="M62 169 C90 160 118 177 150 169 S214 164 250 168 S314 174 350 167 S420 164 454 168 S522 175 560 169 S631 160 671 168 S740 173 776 167 S849 161 888 168 S951 175 991 168 S1053 162 1098 167 S1173 174 1218 168 S1300 164 1378 169 L1378 337 L62 337Z" fill="url(#epi)" />
+ <path d="M62 319 C115 319 137 316 175 298 C200 283 207 271 233 270 C259 269 266 296 308 318 C371 345 418 305 465 320 C497 331 528 324 556 313 C614 290 661 318 701 320 C751 323 789 303 841 322 C882 336 925 316 962 324 C1012 331 1040 314 1080 318 C1145 327 1192 307 1250 322 C1300 335 1338 316 1378 323 L1378 554 L62 554Z" fill="url(#dermis)" />
+ <path d="M62 557 C126 545 175 555 225 550 S339 548 393 553 S514 540 571 552 S690 544 748 552 S871 540 920 551 S1035 542 1094 552 S1243 542 1378 553 L1378 645 L62 645Z" fill="url(#fat)" />
+ 
+ <path d="M62 319 C115 319 137 316 175 298 C200 283 207 271 233 270 C259 269 266 296 308 318 C371 345 418 305 465 320 C497 331 528 324 556 313 C614 290 661 318 701 320 C751 323 789 303 841 322 C882 336 925 316 962 324 C1012 331 1040 314 1080 318 C1145 327 1192 307 1250 322 C1300 335 1338 316 1378 323" stroke="#70A5AC" stroke-width="2.7" opacity=".8" fill="none" />
+ 
+ <path d="M62 169 C90 160 118 177 150 169 S214 164 250 168 S314 174 350 167 S420 164 454 168 S522 175 560 169 S631 160 671 168 S740 173 776 167 S849 161 888 168 S951 175 991 168 S1053 162 1098 167 S1173 174 1218 168 S1300 164 1378 169" stroke="#92C7C6" stroke-width="3.5" fill="none" />
+ 
+ <path d="M75 191 C270 183 385 193 560 186 S917 194 1090 188 S1286 190 1370 188" stroke="#86ADB9" stroke-width="1.2" opacity=".32" fill="none" />
+ <path d="M78 211 C260 202 383 211 560 205 S914 212 1096 206 S1282 209 1360 204" stroke="#86ADB9" stroke-width="1" opacity=".22" fill="none" />
+
+<path d="M57 229 Q49 215 87 215 Q124 215 117 230 Q123 243 87 243 Q50 243 57 229Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<ellipse cx="90" cy="229" rx="6" ry="3" fill="#78A7B0" opacity=".14" />
+<path d="M128 229 Q120 213 154 213 Q187 213 180 230 Q186 245 154 245 Q121 245 128 229Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M196 229 Q188 209 221 209 Q253 209 246 230 Q252 249 221 249 Q189 249 196 229Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M253 229 Q245 212 283 212 Q320 212 313 230 Q319 246 283 246 Q246 246 253 229Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<ellipse cx="286" cy="229" rx="6" ry="3" fill="#78A7B0" opacity=".14" />
+<path d="M311 229 Q303 213 338 213 Q372 213 365 230 Q371 245 338 245 Q304 245 311 229Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M364 229 Q356 211 395 211 Q433 211 426 230 Q432 247 395 247 Q357 247 364 229Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M434 229 Q426 213 459 213 Q491 213 484 230 Q490 245 459 245 Q427 245 434 229Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<ellipse cx="462" cy="229" rx="6" ry="3" fill="#78A7B0" opacity=".14" />
+<path d="M495 229 Q487 213 523 213 Q558 213 551 230 Q557 245 523 245 Q488 245 495 229Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M564 229 Q556 213 594 213 Q631 213 624 230 Q630 245 594 245 Q557 245 564 229Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M619 229 Q611 212 646 212 Q680 212 673 230 Q679 246 646 246 Q612 246 619 229Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<ellipse cx="649" cy="229" rx="6" ry="3" fill="#78A7B0" opacity=".14" />
+<path d="M673 229 Q665 211 702 211 Q738 211 731 230 Q737 247 702 247 Q666 247 673 229Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M740 229 Q732 210 771 210 Q809 210 802 230 Q808 248 771 248 Q733 248 740 229Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M810 229 Q802 212 837 212 Q871 212 864 230 Q870 246 837 246 Q803 246 810 229Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<ellipse cx="840" cy="229" rx="6" ry="3" fill="#78A7B0" opacity=".14" />
+<path d="M870 229 Q862 215 897 215 Q931 215 924 230 Q930 243 897 243 Q863 243 870 229Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M935 229 Q927 214 965 214 Q1002 214 995 230 Q1001 244 965 244 Q928 244 935 229Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M991 229 Q983 213 1017 213 Q1050 213 1043 230 Q1049 245 1017 245 Q984 245 991 229Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<ellipse cx="1020" cy="229" rx="6" ry="3" fill="#78A7B0" opacity=".14" />
+<path d="M1058 229 Q1050 214 1087 214 Q1123 214 1116 230 Q1122 244 1087 244 Q1051 244 1058 229Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M1120 229 Q1112 209 1152 209 Q1191 209 1184 230 Q1190 249 1152 249 Q1113 249 1120 229Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M1169 229 Q1161 213 1201 213 Q1240 213 1233 230 Q1239 245 1201 245 Q1162 245 1169 229Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<ellipse cx="1204" cy="229" rx="6" ry="3" fill="#78A7B0" opacity=".14" />
+<path d="M1237 229 Q1229 211 1268 211 Q1306 211 1299 230 Q1305 247 1268 247 Q1230 247 1237 229Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M1307 229 Q1299 215 1337 215 Q1374 215 1367 230 Q1373 243 1337 243 Q1300 243 1307 229Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M89 263 Q81 243 114 243 Q146 243 139 264 Q145 283 114 283 Q82 283 89 263Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<ellipse cx="117" cy="263" rx="6" ry="3" fill="#78A7B0" opacity=".14" />
+<path d="M283 263 Q275 250 308 250 Q340 250 333 264 Q339 276 308 276 Q276 276 283 263Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<ellipse cx="311" cy="263" rx="6" ry="3" fill="#78A7B0" opacity=".14" />
+<path d="M331 263 Q323 243 360 243 Q396 243 389 264 Q395 283 360 283 Q324 283 331 263Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M403 263 Q395 248 432 248 Q468 248 461 264 Q467 278 432 278 Q396 278 403 263Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M468 263 Q460 248 495 248 Q529 248 522 264 Q528 278 495 278 Q461 278 468 263Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<ellipse cx="498" cy="263" rx="6" ry="3" fill="#78A7B0" opacity=".14" />
+<path d="M531 263 Q523 245 556 245 Q588 245 581 264 Q587 281 556 281 Q524 281 531 263Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M584 263 Q576 245 616 245 Q655 245 648 264 Q654 281 616 281 Q577 281 584 263Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M648 263 Q640 248 677 248 Q713 248 706 264 Q712 278 677 278 Q641 278 648 263Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<ellipse cx="680" cy="263" rx="6" ry="3" fill="#78A7B0" opacity=".14" />
+<path d="M705 263 Q697 244 730 244 Q762 244 755 264 Q761 282 730 282 Q698 282 705 263Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M774 263 Q766 244 797 244 Q827 244 820 264 Q826 282 797 282 Q767 282 774 263Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M839 263 Q831 243 870 243 Q908 243 901 264 Q907 283 870 283 Q832 283 839 263Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<ellipse cx="873" cy="263" rx="6" ry="3" fill="#78A7B0" opacity=".14" />
+<path d="M887 263 Q879 250 919 250 Q958 250 951 264 Q957 276 919 276 Q880 276 887 263Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M957 263 Q949 244 986 244 Q1022 244 1015 264 Q1021 282 986 282 Q950 282 957 263Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M1026 263 Q1018 243 1055 243 Q1091 243 1084 264 Q1090 283 1055 283 Q1019 283 1026 263Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<ellipse cx="1058" cy="263" rx="6" ry="3" fill="#78A7B0" opacity=".14" />
+<path d="M1081 263 Q1073 247 1106 247 Q1138 247 1131 264 Q1137 279 1106 279 Q1074 279 1081 263Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M1142 263 Q1134 245 1169 245 Q1203 245 1196 264 Q1202 281 1169 281 Q1135 281 1142 263Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M1217 263 Q1209 250 1241 250 Q1272 250 1265 264 Q1271 276 1241 276 Q1210 276 1217 263Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<ellipse cx="1244" cy="263" rx="6" ry="3" fill="#78A7B0" opacity=".14" />
+<path d="M1268 263 Q1260 248 1299 248 Q1337 248 1330 264 Q1336 278 1299 278 Q1261 278 1268 263Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M64 292 Q56 275 88 275 Q119 275 112 293 Q118 309 88 309 Q57 309 64 292Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<ellipse cx="91" cy="292" rx="6" ry="3" fill="#78A7B0" opacity=".14" />
+<path d="M124 292 Q116 276 149 276 Q181 276 174 293 Q180 308 149 308 Q117 308 124 292Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M308 292 Q300 278 340 278 Q379 278 372 293 Q378 306 340 306 Q301 306 308 292Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M375 292 Q367 274 400 274 Q432 274 425 293 Q431 310 400 310 Q368 310 375 292Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M435 292 Q427 273 466 273 Q504 273 497 293 Q503 311 466 311 Q428 311 435 292Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<ellipse cx="469" cy="292" rx="6" ry="3" fill="#78A7B0" opacity=".14" />
+<path d="M502 292 Q494 279 529 279 Q563 279 556 293 Q562 305 529 305 Q495 305 502 292Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M559 292 Q551 279 591 279 Q630 279 623 293 Q629 305 591 305 Q552 305 559 292Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M621 292 Q613 273 648 273 Q682 273 675 293 Q681 311 648 311 Q614 311 621 292Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<ellipse cx="651" cy="292" rx="6" ry="3" fill="#78A7B0" opacity=".14" />
+<path d="M677 292 Q669 276 704 276 Q738 276 731 293 Q737 308 704 308 Q670 308 677 292Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M744 292 Q736 274 769 274 Q801 274 794 293 Q800 310 769 310 Q737 310 744 292Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M816 292 Q808 278 840 278 Q871 278 864 293 Q870 306 840 306 Q809 306 816 292Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<ellipse cx="843" cy="292" rx="6" ry="3" fill="#78A7B0" opacity=".14" />
+<path d="M867 292 Q859 275 898 275 Q936 275 929 293 Q935 309 898 309 Q860 309 867 292Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M938 292 Q930 278 964 278 Q997 278 990 293 Q996 306 964 306 Q931 306 938 292Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M986 292 Q978 272 1014 272 Q1049 272 1042 293 Q1048 312 1014 312 Q979 312 986 292Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<ellipse cx="1017" cy="292" rx="6" ry="3" fill="#78A7B0" opacity=".14" />
+<path d="M1053 292 Q1045 278 1079 278 Q1112 278 1105 293 Q1111 306 1079 306 Q1046 306 1053 292Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M1116 292 Q1108 272 1147 272 Q1185 272 1178 293 Q1184 312 1147 312 Q1109 312 1116 292Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M1185 292 Q1177 273 1214 273 Q1250 273 1243 293 Q1249 311 1214 311 Q1178 311 1185 292Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<ellipse cx="1217" cy="292" rx="6" ry="3" fill="#78A7B0" opacity=".14" />
+<path d="M1246 292 Q1238 272 1269 272 Q1299 272 1292 293 Q1298 312 1269 312 Q1239 312 1246 292Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M1312 292 Q1304 276 1338 276 Q1371 276 1364 293 Q1370 308 1338 308 Q1305 308 1312 292Z" fill="#376575" fill-opacity=".17" stroke="#7FA7B6" stroke-width=".8" stroke-opacity=".23" />
+<path d="M1066 414 q22 -11 68 -6" fill="none" stroke="#6D9EA9" stroke-width="1" opacity=".085" />
+<path d="M876 348 q16 -10 49 -5" fill="none" stroke="#6D9EA9" stroke-width="1.7" opacity=".085" />
+<path d="M1037 522 q21 -6 64 -1" fill="none" stroke="#6D9EA9" stroke-width="1.7" opacity=".085" />
+<path d="M392 458 q16 -5 49 -6" fill="none" stroke="#6D9EA9" stroke-width="1" opacity=".085" />
+<path d="M215 493 q12 -4 38 -6" fill="none" stroke="#6D9EA9" stroke-width="1.7" opacity=".085" />
+<path d="M923 368 q9 -3 27 -4" fill="none" stroke="#6D9EA9" stroke-width="1" opacity=".085" />
+<path d="M961 380 q20 -8 60 -3" fill="none" stroke="#6D9EA9" stroke-width="1.7" opacity=".085" />
+<path d="M200 488 q12 -11 36 -2" fill="none" stroke="#6D9EA9" stroke-width="1.3" opacity=".085" />
+<path d="M1339 453 q22 -10 68 -8" fill="none" stroke="#6D9EA9" stroke-width="1.7" opacity=".085" />
+<path d="M882 484 q9 -4 27 -4" fill="none" stroke="#6D9EA9" stroke-width="1.7" opacity=".085" />
+<path d="M630 437 q16 -9 49 -5" fill="none" stroke="#6D9EA9" stroke-width="1" opacity=".085" />
+<path d="M611 406 q15 -8 47 -6" fill="none" stroke="#6D9EA9" stroke-width="1.7" opacity=".085" />
+<path d="M1268 474 q12 -3 37 -7" fill="none" stroke="#6D9EA9" stroke-width="1.3" opacity=".085" />
+<path d="M161 478 q9 -6 27 -7" fill="none" stroke="#6D9EA9" stroke-width="1" opacity=".085" />
+<path d="M890 398 q21 -4 64 -4" fill="none" stroke="#6D9EA9" stroke-width="1" opacity=".085" />
+<path d="M254 524 q14 -3 43 -7" fill="none" stroke="#6D9EA9" stroke-width="1.3" opacity=".085" />
+<path d="M1115 434 q21 -3 64 -8" fill="none" stroke="#6D9EA9" stroke-width="1.3" opacity=".085" />
+<path d="M522 432 q14 -10 44 -8" fill="none" stroke="#6D9EA9" stroke-width="1.7" opacity=".085" />
+<path d="M1080 407 q12 -10 36 -6" fill="none" stroke="#6D9EA9" stroke-width="1" opacity=".085" />
+<path d="M482 402 q21 -3 64 -5" fill="none" stroke="#6D9EA9" stroke-width="1.3" opacity=".085" />
+<path d="M462 407 q8 -11 26 -1" fill="none" stroke="#6D9EA9" stroke-width="1" opacity=".085" />
+<path d="M332 438 q20 -11 60 -3" fill="none" stroke="#6D9EA9" stroke-width="1" opacity=".085" />
+<path d="M755 517 q14 -4 43 -4" fill="none" stroke="#6D9EA9" stroke-width="1.7" opacity=".085" />
+<path d="M1123 468 q19 -8 57 -5" fill="none" stroke="#6D9EA9" stroke-width="1.7" opacity=".085" />
+<path d="M1006 387 q18 -7 54 -1" fill="none" stroke="#6D9EA9" stroke-width="1.3" opacity=".085" />
+<path d="M770 477 q22 -10 66 -4" fill="none" stroke="#6D9EA9" stroke-width="1.7" opacity=".085" />
+<path d="M678 479 q14 -3 42 -1" fill="none" stroke="#6D9EA9" stroke-width="1.7" opacity=".085" />
+<path d="M150 379 q20 -7 61 -7" fill="none" stroke="#6D9EA9" stroke-width="1" opacity=".085" />
+<path d="M589 397 q17 -10 53 -1" fill="none" stroke="#6D9EA9" stroke-width="1.7" opacity=".085" />
+<path d="M1262 505 q14 -3 42 -7" fill="none" stroke="#6D9EA9" stroke-width="1.3" opacity=".085" />
+<path d="M1300 369 q17 -6 51 -6" fill="none" stroke="#6D9EA9" stroke-width="1.3" opacity=".085" />
+<path d="M883 490 q12 -3 36 -3" fill="none" stroke="#6D9EA9" stroke-width="1" opacity=".085" />
+<path d="M172 364 q17 -11 52 -4" fill="none" stroke="#6D9EA9" stroke-width="1.3" opacity=".085" />
+<path d="M296 527 q16 -6 48 -5" fill="none" stroke="#6D9EA9" stroke-width="1.3" opacity=".085" />
+<path d="M1204 471 q21 -4 65 -4" fill="none" stroke="#6D9EA9" stroke-width="1.7" opacity=".085" />
+<path d="M1321 525 q23 -9 69 -4" fill="none" stroke="#6D9EA9" stroke-width="1" opacity=".085" />
+<path d="M263 521 q15 -5 47 -2" fill="none" stroke="#6D9EA9" stroke-width="1.7" opacity=".085" />
+<path d="M734 425 q23 -5 70 -7" fill="none" stroke="#6D9EA9" stroke-width="1.3" opacity=".085" />
+<path d="M455 353 q13 -10 39 -8" fill="none" stroke="#6D9EA9" stroke-width="1.3" opacity=".085" />
+<path d="M462 360 q22 -8 68 -8" fill="none" stroke="#6D9EA9" stroke-width="1" opacity=".085" />
+<path d="M765 370 q13 -3 40 -6" fill="none" stroke="#6D9EA9" stroke-width="1.3" opacity=".085" />
+<path d="M667 397 q23 -9 70 -5" fill="none" stroke="#6D9EA9" stroke-width="1" opacity=".085" />
+<path d="M1152 383 q19 -8 58 -3" fill="none" stroke="#6D9EA9" stroke-width="1.7" opacity=".085" />
+<ellipse cx="145" cy="594" rx="35" ry="24.5" fill="#29495A" stroke="#557684" stroke-width="2" opacity=".48" />
+<path d="M124.0 599 q21.0 -24.5 52.5 -7" stroke="#7BA0A7" opacity=".13" fill="none" />
+<ellipse cx="318" cy="603" rx="28" ry="19.6" fill="#29495A" stroke="#557684" stroke-width="2" opacity=".48" />
+<path d="M301.2 608 q16.8 -19.6 42.0 -7" stroke="#7BA0A7" opacity=".13" fill="none" />
+<ellipse cx="492" cy="596" rx="36" ry="25.2" fill="#29495A" stroke="#557684" stroke-width="2" opacity=".48" />
+<path d="M470.4 601 q21.6 -25.2 54.0 -7" stroke="#7BA0A7" opacity=".13" fill="none" />
+<ellipse cx="660" cy="599" rx="32" ry="22.4" fill="#29495A" stroke="#557684" stroke-width="2" opacity=".48" />
+<path d="M640.8 604 q19.2 -22.4 48.0 -7" stroke="#7BA0A7" opacity=".13" fill="none" />
+<ellipse cx="802" cy="595" rx="33" ry="23.1" fill="#29495A" stroke="#557684" stroke-width="2" opacity=".48" />
+<path d="M782.2 600 q19.8 -23.1 49.5 -7" stroke="#7BA0A7" opacity=".13" fill="none" />
+<ellipse cx="1075" cy="608" rx="37" ry="25.9" fill="#29495A" stroke="#557684" stroke-width="2" opacity=".48" />
+<path d="M1052.8 613 q22.2 -25.9 55.5 -7" stroke="#7BA0A7" opacity=".13" fill="none" />
+<ellipse cx="1340" cy="606" rx="31" ry="21.7" fill="#29495A" stroke="#557684" stroke-width="2" opacity=".48" />
+<path d="M1321.4 611 q18.6 -21.7 46.5 -7" stroke="#7BA0A7" opacity=".13" fill="none" />
+<ellipse cx="926" cy="603" rx="27" ry="18.9" fill="#29495A" stroke="#557684" stroke-width="2" opacity=".48" />
+<path d="M909.8 608 q16.2 -18.9 40.5 -7" stroke="#7BA0A7" opacity=".13" fill="none" />
+</g>
+<g opacity=".96">
+ <rect x="88" y="217" width="110" height="45" rx="9" fill="#0B2B39" fill-opacity=".84" stroke="#345D68" />
+ <text x="102" y="236" class="layername" font-size="14">EPIDERMIS</text><text x="102" y="252" class="layerdetail">Stratified epithelium</text>
+ <rect x="88" y="404" width="110" height="43" rx="9" fill="#0B2B39" fill-opacity=".84" stroke="#345D68" />
+ <text x="102" y="422" class="layername" font-size="14">DERMIS</text><text x="102" y="438" class="layerdetail">Connective tissue</text>
+ <rect x="88" y="572" width="112" height="43" rx="9" fill="#0B2B39" fill-opacity=".84" stroke="#345D68" />
+ <text x="102" y="591" class="layername" font-size="14">HYPODERMIS</text><text x="102" y="606" class="layerdetail">Subcutaneous tissue</text>
+</g>
+<g class="clickable" data-mech="meissner" role="button" tabindex="0" aria-label="Meissner corpuscle, rapidly adapting type I">
+ <ellipse class="halo" cx="247" cy="312" rx="63" ry="92" fill="#63E7DA" filter="url(#glow)" />
+ <path d="M247 645 C240 622 236 602 238 576 C240 541 252 509 250 475 C248 438 234 408 238 379 C240 360 241 345 244 335" class="axonHighlight" stroke="#63E7DA" />
+ <path d="M247 645 C240 622 236 602 238 576 C240 541 252 509 250 475 C248 438 234 408 238 379 C240 360 241 345 244 335" class="axon" stroke="#63E7DA" />
+ <path class="outline" d="M235 273 C219 278 213 293 217 316 C219 345 231 372 246 375 C260 374 270 352 276 323 C283 295 271 282 257 275 Q244 268 235 273Z" fill="url(#capsule)" stroke="#63E7DA" stroke-width="3" filter="url(#shadow)" />
+ <path d="M226 276 Q263 281 226 292 Q217 299 264 305 Q272 314 226 320 Q218 327 264 332 Q270 340 231 346" fill="none" stroke="#A5F9E8" stroke-width="5" stroke-linecap="round" opacity=".86" />
+ <path d="M240 361 Q253 349 231 342" stroke="#DCFDF7" stroke-width="3" fill="none" />
+ <path d="M222 273 C236 264 254 267 268 277" stroke="#BDFCF0" stroke-opacity=".6" fill="none" stroke-width="1.7" />
+</g><g class="clickable" data-mech="merkel" role="button" tabindex="0" aria-label="Merkel cell neurite complex, slowly adapting type I">
+ <ellipse class="halo" cx="490" cy="319" rx="83" ry="68" fill="#9BE7B9" filter="url(#glow)" />
+ <path d="M492 645 C494 621 499 596 501 570 C504 533 501 496 501 459 C501 420 499 386 495 355 C494 345 492 338 490 331" class="axonHighlight" stroke="#BEEA74" />
+ <path d="M492 645 C494 621 499 596 501 570 C504 533 501 496 501 459 C501 420 499 386 495 355 C494 345 492 338 490 331" class="axon" stroke="#BEEA74" />
+ <path d="M490 332 C484 320 472 315 458 311 M490 330 C500 319 511 314 523 311 M490 325 L490 305" class="nerve" stroke="#BEEA74" />
+ <path class="outline" d="M447 289 Q452 276 465 279 Q479 282 478 294 Q476 307 464 309 Q450 308 447 297Z" stroke="#8FE3B2" stroke-width="3" fill="#4D7D69" />
+ <path d="M478 293 Q480 278 494 280 Q506 280 508 293 Q506 310 492 310 Q480 307 478 293Z" fill="#587D68" stroke="#8FE3B2" stroke-width="2.3" />
+ <path d="M507 291 Q514 275 529 281 Q541 285 538 297 Q536 312 523 314 Q510 311 507 291Z" fill="#4D7D69" stroke="#8FE3B2" stroke-width="2.3" />
+ <ellipse cx="463" cy="293" rx="4.5" ry="3" fill="#DFF7D6" opacity=".82" />
+ <ellipse cx="492" cy="295" rx="4.5" ry="3" fill="#DFF7D6" opacity=".82" />
+ <ellipse cx="525" cy="295" rx="4.5" ry="3" fill="#DFF7D6" opacity=".82" />
+ <path d="M459 311 Q468 320 477 310 M481 312 Q494 322 507 311 M506 313 Q520 324 534 314" stroke="#D6F7B7" stroke-width="3" fill="none" />
+</g><g class="clickable" data-mech="noci" role="button" tabindex="0" aria-label="Mechanical nociceptor free nerve endings">
+ <ellipse class="halo" cx="750" cy="260" rx="112" ry="110" fill="#FF9B88" filter="url(#glow)" /><path d="M742 645 C736 611 733 583 737 548 C742 511 746 476 745 440 C743 409 735 376 739 348 C741 331 749 310 760 294 C773 275 783 258 783 241 C783 226 765 210 769 191" class="axonHighlight" stroke="#FF9B88" /><path d="M742 645 C736 611 733 583 737 548 C742 511 746 476 745 440 C743 409 735 376 739 348 C741 331 749 310 760 294 C773 275 783 258 783 241 C783 226 765 210 769 191" class="axon" stroke="#FF9B88" /><path d="M754 305 C737 288 721 273 719 255 C716 235 707 229 692 220 C671 213 660 207 665 198 C667 195 673 193 679 191" fill="none" stroke="#FF9B88" stroke-width="3.9" stroke-linecap="round" stroke-linejoin="round" /><path d="M719 255 C723 237 713 222 706 209 C698 201 701 195 708 191" fill="none" stroke="#FF9B88" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round" /><path d="M742 345 C756 323 772 309 793 298 C816 286 835 271 837 251 C839 232 826 223 831 207 C833 200 839 195 844 190" fill="none" stroke="#FF9B88" stroke-width="3.9" stroke-linecap="round" stroke-linejoin="round" /><path d="M793 298 C783 282 778 263 784 247 C788 234 802 226 806 209 C808 202 810 198 816 191" fill="none" stroke="#FF9B88" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" /><path d="M783 241 C791 231 793 221 789 210 C783 201 787 196 795 191" fill="none" stroke="#FF9B88" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round" /><path d="M692 220 C684 208 681 199 687 192" fill="none" stroke="#FF9B88" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></g><g class="clickable" data-mech="sa2" role="button" tabindex="0" aria-label="SA II afferent, traditional Ruffini-like ending, anatomical identity uncertain">
+ <ellipse class="halo" cx="970" cy="448" rx="119" ry="64" fill="#C4A5F5" filter="url(#glow)" />
+ <path d="M965 645 C964 619 964 594 965 571 C967 532 972 497 973 468 C973 462 973 458 974 454" class="axonHighlight" stroke="#C4A5F5" />
+ <path d="M965 645 C964 619 964 594 965 571 C967 532 972 497 973 468 C973 462 973 458 974 454" class="axon" stroke="#C4A5F5" />
+ <path class="outline" d="M892 448 C910 429 929 420 956 423 C968 419 983 419 994 423 C1020 420 1038 429 1050 448 C1037 466 1018 475 992 472 C979 476 965 476 953 472 C927 475 909 467 892 448Z" fill="#473C6A" fill-opacity=".6" stroke="#C4A5F5" stroke-width="3" />
+ <path d="M900 448 C919 438 940 438 959 448 C977 457 998 458 1042 448 M900 448 C919 458 940 458 959 448 C978 438 998 438 1042 448" fill="none" stroke="#E4D9FF" stroke-width="2.5" />
+ <path d="M919 431 Q947 447 969 431 M928 465 Q957 447 989 464 M955 426 Q975 448 1004 428 M945 470 Q980 447 1017 468" fill="none" stroke="#C4A5F5" stroke-width="2" opacity=".78" />
+ <path d="M974 454 C963 445 957 440 944 438" stroke="#F0E8FF" stroke-width="3" fill="none" />
+</g><g class="clickable" data-mech="pacinian" role="button" tabindex="0" aria-label="Pacinian corpuscle, rapidly adapting type II">
+ <ellipse class="halo" cx="1215" cy="559" rx="115" ry="82" fill="#70CBF6" filter="url(#glow)" />
+ <path d="M1216 645 C1212 625 1211 610 1213 593 C1214 585 1215 578 1216 573" class="axonHighlight" stroke="#70CBF6" />
+ <path d="M1216 645 C1212 625 1211 610 1213 593 C1214 585 1215 578 1216 573" class="axon" stroke="#70CBF6" />
+ <ellipse class="outline" cx="1215" cy="557" rx="85" ry="61" fill="url(#pacinianBody)" stroke="#70CBF6" stroke-width="3" filter="url(#shadow)" />
+ <g fill="none" stroke="#8CDFF7">
+  <ellipse cx="1215" cy="557" rx="74" ry="53" stroke-width="2" opacity=".6" />
+  <ellipse cx="1215" cy="557" rx="64" ry="45" stroke-width="2.2" opacity=".72" />
+  <ellipse cx="1215" cy="557" rx="54" ry="37" stroke-width="2" opacity=".7" />
+  <ellipse cx="1215" cy="557" rx="43" ry="29" stroke-width="2.2" opacity=".83" />
+  <ellipse cx="1215" cy="557" rx="32" ry="21" stroke-width="2.1" opacity=".88" />
+  <ellipse cx="1215" cy="557" rx="21" ry="14" stroke-width="2.1" opacity=".95" />
+ </g>
+ <ellipse cx="1215" cy="557" rx="9" ry="5" fill="#70CBF6" />
+ <path d="M1216 574 L1216 557" stroke="#D9FAFF" stroke-width="3.5" stroke-linecap="round" />
+</g><g>
+ <path d="M524 314 L559 346 L606 346" stroke="#9CD9D4" stroke-width="1.3" stroke-dasharray="4 5" opacity=".55" fill="none" />
+ <text x="612" y="352" font-size="14" fill="#AFCBD1">Basal epidermis</text>
+</g>
+<g><rect x="76" y="675" width="248" height="82" rx="12" fill="#0C2B3B" stroke="#325060" stroke-width="1.4" />
+ <rect x="76" y="675" width="4.5" height="82" rx="2" fill="#63E7DA" />
+ <circle cx="102" cy="700" r="12" fill="#63E7DA" />
+ <text x="102" y="705" class="labelnumber">01</text>
+ <text x="122" y="702" class="labelname">Meissner</text>
+ <text x="94" y="736" class="labeldetail">FA I · superficial</text>
+ </g>
+<g><rect x="343" y="675" width="248" height="82" rx="12" fill="#0C2B3B" stroke="#325060" stroke-width="1.4" />
+ <rect x="343" y="675" width="4.5" height="82" rx="2" fill="#B2E599" />
+ <circle cx="369" cy="700" r="12" fill="#B2E599" />
+ <text x="369" y="705" class="labelnumber">02</text>
+ <text x="389" y="702" class="labelname">Merkel complex</text>
+ <text x="361" y="736" class="labeldetail">SA I · basal epidermis</text>
+ </g>
+<g><rect x="610" y="675" width="248" height="82" rx="12" fill="#0C2B3B" stroke="#325060" stroke-width="1.4" />
+ <rect x="610" y="675" width="4.5" height="82" rx="2" fill="#FF9B88" />
+ <circle cx="636" cy="700" r="12" fill="#FF9B88" />
+ <text x="636" y="705" class="labelnumber">03</text>
+ <text x="656" y="702" class="labelname">Free endings</text>
+ <text x="628" y="736" class="labeldetail">High-threshold nociceptor</text>
+ </g>
+<g><rect x="877" y="675" width="248" height="82" rx="12" fill="#0C2B3B" stroke="#325060" stroke-width="1.4" />
+ <rect x="877" y="675" width="4.5" height="82" rx="2" fill="#C4A5F5" />
+ <circle cx="903" cy="700" r="12" fill="#C4A5F5" />
+ <text x="903" y="705" class="labelnumber">04</text>
+ <text x="923" y="702" class="labelname">Ruffini · SA II</text>
+ <text x="895" y="736" class="labeldetail">Deep · stretch-sensitive</text>
+ </g>
+<g><rect x="1144" y="675" width="248" height="82" rx="12" fill="#0C2B3B" stroke="#325060" stroke-width="1.4" />
+ <rect x="1144" y="675" width="4.5" height="82" rx="2" fill="#70CBF6" />
+ <circle cx="1170" cy="700" r="12" fill="#70CBF6" />
+ <text x="1170" y="705" class="labelnumber">05</text>
+ <text x="1190" y="702" class="labelname">Pacinian</text>
+ <text x="1162" y="736" class="labeldetail">FA II · deep</text>
+ </g>
+<text x="78" y="784" fill="#91AAB5" font-size="12.5">Teaching schematic · Relative depth and receptor size are illustrative, not to scale.</text>
+<text x="1370" y="784" text-anchor="end" fill="#91AAB5" font-size="12.5">Human SA II anatomical correlate remains uncertain.</text>
+</svg>
+</div>
+          <div class="topline"><span id="m-status" class="status">Ready · baseline</span><span id="m-clock" class="status">−0.50 / 4.00 s</span></div><div class="progress"><div id="m-progress"></div></div>
+        </section>
+        <div class="quiz-anatomy-hidden" aria-hidden="true"><div class="quiz-icon">◌ ◌ ◌</div><strong class="quiz-hidden-head">Anatomical clues are hidden</strong><div class="quiz-hidden-explain">You can inspect the endings after revealing the solutions.</div></div>
+        <section class="panel quiz-panel" aria-label="Identify the recordings">
+          <h2 class="quiz-title">Identify the afferents</h2>
+          <p class="quiz-instructions">Apply different stimuli, compare the anonymous recordings, and assign one identity to each unit. Every identity is used once.</p>
+          <div class="quiz-actions"><button class="quiz-check primary" type="button">Check predictions</button><button class="quiz-reveal" type="button">Reveal answers</button><button class="quiz-new" type="button">New challenge</button></div>
+          <p class="quiz-status" role="status" aria-live="polite">Choose an identity for each unit.</p>
+        </section>
+        <section class="panel">
+          <div class="records-top"><h2>Stimulus and afferent recordings</h2><div class="viewbuttons"><button id="m-live" class="active">Live</button><button id="m-full">Full trial</button><button id="m-minus" class="zoom" aria-label="Zoom out">−</button><button id="m-plus" class="zoom" aria-label="Zoom in">+</button></div></div>
+          <p class="note">Click to place a shared cursor; drag horizontally to pan all traces. + / − zoom around your cursor.</p>
+          <div class="rowrecord stimrow"><div class="record-label"><strong>Mechanical stimulus</strong><small id="m-stimtext">Pressure · 60%</small><div class="rate" id="m-cursorText">Cursor: —</div></div><canvas class="plot" id="m-stimulus"></canvas></div>
+          <div id="m-rows"></div>
+          <p class="note">Continuous schematic afferent voltage; baseline −70 mV. Unacquired portions are darkened. Orange markers indicate stimulus onset and release.</p>
+        </section>
+        <section class="panel pred-secret"><div class="eyebrow">Receptor physiology</div><h3 id="m-infoTitle">Meissner · FA I</h3><p id="m-infoBody" class="reading"></p><div class="infobox"><strong id="m-infoFunctionTitle"></strong><p id="m-infoFunction"></p></div><div class="prediction" id="m-infoPrediction"></div><p id="m-infoExtra" class="reading"></p><div class="related-references"><strong>Selected readings for this receptor</strong><div id="m-infoSources" class="reference-shortcuts"></div></div></section>
+        <section class="panel scientific-bibliography pred-secret" aria-label="Mechanical scientific bibliography"><div class="topline"><div><div class="eyebrow">Further reading</div><h2>Mechanical scientific bibliography <span class="ref-counter">17 sources</span></h2></div><span class="pill">Peer-reviewed literature</span></div><p class="note">For the mechanoreceptors, the four low-threshold classes are grounded in human physiology, but some molecular and anatomical studies use animal models. The simulator does not reproduce the firing rates or thresholds from any individual paper.</p><details id="m-bibliography"><summary class="bib-toggle">Show 17 studies and reviews <span class="bib-hint">(citations, evidence type, and publication links)</span></summary><ol class="reference-list"><li id="ref-m01" class="reference-item"><div class="ref-head"><span class="ref-index">M01</span><span class="ref-tag">Human microneurography</span></div><p class="ref-citation">Johansson RS, Vallbo ÅB. Tactile sensibility in the human hand: relative and absolute densities of four types of mechanoreceptive units in glabrous skin. J Physiol. 1979. DOI: 10.1113/jphysiol.1979.sp012619.</p><p class="ref-explainer"><strong>Why it matters:</strong> Foundational identification, distribution and receptive fields of the four low-threshold tactile afferent classes.</p><a href="https://pubmed.ncbi.nlm.nih.gov/439026/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-m02" class="reference-item"><div class="ref-head"><span class="ref-index">M02</span><span class="ref-tag">Human physiology</span></div><p class="ref-citation">Johansson RS, Vallbo ÅB. Detection of tactile stimuli: thresholds of afferent units related to psychophysical thresholds in the human hand. J Physiol. 1979. DOI: 10.1113/jphysiol.1979.sp013048.</p><p class="ref-explainer"><strong>Why it matters:</strong> Relates afferent thresholds to human tactile perception; explains why absolute stimulus intensity cannot be inferred from this simulator.</p><a href="https://pubmed.ncbi.nlm.nih.gov/536918/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-m03" class="reference-item"><div class="ref-head"><span class="ref-index">M03</span><span class="ref-tag">Review</span></div><p class="ref-citation">Johnson KO. The roles and functions of cutaneous mechanoreceptors. Curr Opin Neurobiol. 2001. DOI: 10.1016/S0959-4388(00)00234-8.</p><p class="ref-explainer"><strong>Why it matters:</strong> Classic synthesis of discriminative touch, spatial information, vibration, and different afferent functions.</p><a href="https://pubmed.ncbi.nlm.nih.gov/11502392/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-m04" class="reference-item"><div class="ref-head"><span class="ref-index">M04</span><span class="ref-tag">Review</span></div><p class="ref-citation">Saal HP, Bensmaia SJ. Touch is a team effort: interplay of submodalities in cutaneous sensibility. Trends Neurosci. 2014. DOI: 10.1016/j.tins.2014.08.012.</p><p class="ref-explainer"><strong>Why it matters:</strong> Explains that tactile perception integrates multiple afferent populations rather than reading one receptor in isolation.</p><a href="https://pubmed.ncbi.nlm.nih.gov/25257208/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-m05" class="reference-item"><div class="ref-head"><span class="ref-index">M05</span><span class="ref-tag">Human psychophysics + nonhuman primate physiology</span></div><p class="ref-citation">LaMotte RH, Mountcastle VB. Capacities of humans and monkeys to discriminate vibratory stimuli of different frequency and amplitude: a correlation between neural events and psychological measurements. J Neurophysiol. 1975. DOI: 10.1152/jn.1975.38.3.539.</p><p class="ref-explainer"><strong>Why it matters:</strong> Relates frequency-dependent vibrotactile behavior to mechanoreceptive afferents; model tuning is qualitative, not a fitted curve.</p><a href="https://pubmed.ncbi.nlm.nih.gov/1127456/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-m06" class="reference-item"><div class="ref-head"><span class="ref-index">M06</span><span class="ref-tag">Human physiology</span></div><p class="ref-citation">Johansson RS, Westling G. Signals in tactile afferents from the fingers eliciting adaptive motor responses during precision grip. Exp Brain Res. 1987. DOI: 10.1007/BF00236210.</p><p class="ref-explainer"><strong>Why it matters:</strong> Demonstrates how tactile afferent signals generated by slip influence rapid grip adjustments.</p><a href="https://pubmed.ncbi.nlm.nih.gov/3582528/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-m07" class="reference-item"><div class="ref-head"><span class="ref-index">M07</span><span class="ref-tag">Human physiology</span></div><p class="ref-citation">Westling G, Johansson RS. Responses in glabrous skin mechanoreceptors during precision grip in humans. Exp Brain Res. 1987. DOI: 10.1007/BF00236209.</p><p class="ref-explainer"><strong>Why it matters:</strong> Single-afferent responses during precision grip, including marked FA I recruitment at initial contact.</p><a href="https://doi.org/10.1007/BF00236209" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-m08" class="reference-item"><div class="ref-head"><span class="ref-index">M08</span><span class="ref-tag">Human physiology</span></div><p class="ref-citation">Birznieks I, Jenmalm P, Goodwin AW, Johansson RS. Encoding of direction of fingertip forces by human tactile afferents. J Neurosci. 2001. DOI: 10.1523/JNEUROSCI.21-20-08222.2001.</p><p class="ref-explainer"><strong>Why it matters:</strong> Shows direction-sensitive responses across FA I, SA I and SA II classes during fingertip loading.</p><a href="https://pubmed.ncbi.nlm.nih.gov/11588194/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-m09" class="reference-item"><div class="ref-head"><span class="ref-index">M09</span><span class="ref-tag">Human physiology (hairy skin)</span></div><p class="ref-citation">Edin BB. Quantitative analysis of static strain sensitivity in human mechanoreceptors from hairy skin. J Neurophysiol. 1992. DOI: 10.1152/jn.1992.67.5.1105.</p><p class="ref-explainer"><strong>Why it matters:</strong> Demonstrates sustained skin-stretch sensitivity of slowly adapting afferents; note that hairy skin differs from glabrous fingertip skin.</p><a href="https://pubmed.ncbi.nlm.nih.gov/1597700/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-m10" class="reference-item"><div class="ref-head"><span class="ref-index">M10</span><span class="ref-tag">Human anatomy</span></div><p class="ref-citation">Paré M, Behets C, Cornu O. Paucity of presumptive Ruffini corpuscles in the index finger pad of humans. J Comp Neurol. 2003. DOI: 10.1002/cne.10519.</p><p class="ref-explainer"><strong>Why it matters:</strong> Supports caution when assigning a specific Ruffini corpuscle morphology to human SA II afferent recordings.</p><a href="https://pubmed.ncbi.nlm.nih.gov/12528190/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-m11" class="reference-item"><div class="ref-head"><span class="ref-index">M11</span><span class="ref-tag">Experimental model</span></div><p class="ref-citation">Woo SH et al. Piezo2 is required for Merkel-cell mechanotransduction. Nature. 2014. DOI: 10.1038/nature13251.</p><p class="ref-explainer"><strong>Why it matters:</strong> Mechanistic evidence for PIEZO2-dependent mechanotransduction in Merkel cells; not a direct human unit recording.</p><a href="https://pubmed.ncbi.nlm.nih.gov/24717433/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-m12" class="reference-item"><div class="ref-head"><span class="ref-index">M12</span><span class="ref-tag">Experimental model</span></div><p class="ref-citation">Maksimovic S et al. Epidermal Merkel cells are mechanosensory cells that tune mammalian touch receptors. Nature. 2014. DOI: 10.1038/nature13250.</p><p class="ref-explainer"><strong>Why it matters:</strong> Demonstrates active Merkel-cell contributions to sustained SA I-like tactile signaling.</p><a href="https://doi.org/10.1038/nature13250" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-m13" class="reference-item"><div class="ref-head"><span class="ref-index">M13</span><span class="ref-tag">Human genetic study</span></div><p class="ref-citation">Chesler AT et al. The role of PIEZO2 in human mechanosensation. N Engl J Med. 2016. DOI: 10.1056/NEJMoa1602812.</p><p class="ref-explainer"><strong>Why it matters:</strong> Loss-of-function cases support PIEZO2 involvement in discriminative touch and proprioception.</p><a href="https://pubmed.ncbi.nlm.nih.gov/27653382/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-m14" class="reference-item"><div class="ref-head"><span class="ref-index">M14</span><span class="ref-tag">Human microneurography</span></div><p class="ref-citation">Weidner C et al. Functional attributes discriminating mechano-insensitive and mechano-responsive C nociceptors in human skin. J Neurosci. 1999. DOI: 10.1523/JNEUROSCI.19-22-10184.1999.</p><p class="ref-explainer"><strong>Why it matters:</strong> Human mechanical nociceptors are heterogeneous; supports keeping the high-intensity recruitment threshold illustrative.</p><a href="https://pubmed.ncbi.nlm.nih.gov/10559426/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-m15" class="reference-item"><div class="ref-head"><span class="ref-index">M15</span><span class="ref-tag">Human microneurography</span></div><p class="ref-citation">Schmidt R, Schmelz M, Torebjörk HE, Handwerker HO. Mechano-insensitive nociceptors encode pain evoked by tonic pressure to human skin. Neuroscience. 2000. DOI: 10.1016/S0306-4522(00)00189-5.</p><p class="ref-explainer"><strong>Why it matters:</strong> Pressure can recruit initially mechanically insensitive C afferents, demonstrating activity patterns beyond one generic nociceptor.</p><a href="https://pubmed.ncbi.nlm.nih.gov/10891622/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-m16" class="reference-item"><div class="ref-head"><span class="ref-index">M16</span><span class="ref-tag">Human microneurography</span></div><p class="ref-citation">Schmelz M et al. Sensitization of insensitive branches of C nociceptors in human skin. J Physiol. 1994. DOI: 10.1113/jphysiol.1994.sp020368.</p><p class="ref-explainer"><strong>Why it matters:</strong> Demonstrates sensitization of C-fiber branches and changing mechanical responsiveness.</p><a href="https://pubmed.ncbi.nlm.nih.gov/7869253/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-m17" class="reference-item"><div class="ref-head"><span class="ref-index">M17</span><span class="ref-tag">Review</span></div><p class="ref-citation">Abraira VE, Ginty DD. The sensory neurons of touch. Neuron. 2013. DOI: 10.1016/j.neuron.2013.07.051.</p><p class="ref-explainer"><strong>Why it matters:</strong> Broader anatomical and physiological context for the sensory neurons involved in touch.</p><a href="https://pubmed.ncbi.nlm.nih.gov/23972592/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li></ol></details></section>
+      </div>
+    </div>
+  </section>
+
+  <section class="module" id="module-therm" hidden role="tabpanel" aria-labelledby="tab-therm">
+    <p class="moduleintro">Explore how cold- and heat-sensitive afferents respond as skin temperature changes.</p>
+    <div class="layout">
+      <aside class="panel aside">
+        <h2>Skin temperature</h2>
+        <p class="note">Move the slider <strong>while recording</strong>. There is no need to apply a new stimulus; the trace stays continuous.</p>
+        <div class="field"><label for="t-slider">Temperature target <output id="t-targetOut">32°C</output></label><input class="thermoSlider" id="t-slider" type="range" min="0" max="55" step="1" value="32"><div class="calibline"><span>0°C</span><span>32°C adapted</span><span>55°C</span></div></div>
+        <div class="thermoRead"><div><small class="muted">Slider target</small><span id="t-targetBig" class="bigread">32.0°C</span></div><div><small class="muted">Simulated skin</small><span id="t-actualBig" class="bigread">32.0°C</span></div></div>
+        <p class="note">The simulated skin temperature approaches the slider target at up to 8°C/s. This produces observable warming and cooling transients instead of physically impossible instantaneous jumps.</p>
+        <button class="primary wide" id="t-start">▶ Start live recording</button><button class="wide" id="t-reset">Reset thermal recording</button>
+        <div class="infobox"><strong>Try this</strong><p>Start at 32°C. Cool to 20°C, hold, then cool to 8°C. Return to 32°C; warm to 40°C, then to 48°C. Compare transient bursts with sustained discharge.</p></div>
+        <p class="note miniBadge">All temperatures are illustrative model values, not absolute human pain thresholds. This is a virtual demonstration, not an instruction to expose skin to extreme temperatures.</p>
+      </aside>
+      <div class="main">
+        <section class="panel pred-secret">
+          <div class="topline"><h2>Free nerve endings in skin</h2><small class="muted">Four functional populations, not four different encapsulated organs</small></div>
+          <svg id="t-skin" class="skin-svg" viewBox="0 0 740 225" role="img" aria-label="Schematic of thermal free nerve endings in skin">
+            <defs><pattern id="cellpattern" width="55" height="35" patternUnits="userSpaceOnUse"><rect width="55" height="35" fill="#2d515e"/><path d="M0 20 Q14 4 28 20 T55 20 M28 0 Q12 10 28 20 Q39 31 28 35" fill="none" stroke="#537f86" stroke-width="1.2" opacity=".7"/></pattern></defs>
+            <rect width="740" height="225" fill="#0d2937"/><rect y="12" width="740" height="95" fill="url(#cellpattern)"/><rect y="107" width="740" height="118" fill="#19404e"/><path d="M0 12 H740 M0 107 H740" stroke="#81b1b5" stroke-width="2"/>
+
+            <g class="clickable selected" data-therm="cool" tabindex="0" role="button" aria-label="Cool thermosensory afferent">
+              <ellipse class="halo" cx="94" cy="87" rx="64" ry="79" fill="#68caff"/>
+              <g transform="translate(94,18) scale(0.77,0.685) translate(-68,0)">
+                <path class="outline" d="M295.29,546.61c.59-18.6,1.62-37.21,1.64-55.82,0-17.28-.9-34.58-1.8-51.84-.17-3.36-2.14-6.62-3.26-9.93-.65-1.9-1.73-3.81-1.78-5.74-.28-11.17,8.09-22.68,18.94-25.32a42.7,42.7,0,0,0,23-13.75c5.77-6.7,8-14.14,5.44-22.84-1.53-5.19-3-10.42-4-15.73-1.49-7.7,1.88-14.35,5.28-20.92a8.4,8.4,0,0,0,1-2.66,19.23,19.23,0,0,0-8,15.15c-.1,6.63.31,13.69,2.51,19.85,6,16.68-3.35,28.57-16.69,34.94a47.78,47.78,0,0,1-9.18,3.05c-11.07,2.74-16.8,10.54-20.14,20.73-.35,1.08-.75,2.15-1.16,3.33-4.59-3.86-5.39-10.54-2.05-15.92s6.91-10.57,10.07-16c2.47-4.28,2.94-8.9,2.49-14-.25-2.78,2.1-6.16,4-8.69,3.12-4.05,7.24-7.35,10.2-11.5a18.08,18.08,0,0,0,3.51-9.49c.12-5.07,1.67-8.62,5.86-11.49a18.81,18.81,0,0,0,8.57-14.69,13.6,13.6,0,0,1,6.4-11c2.07-1.35,3.48-3.72,4.91-5.86-9.53,6.08-11.34,8.6-14,18.49-1.23,4.51-3.43,8.33-7.49,11-2.4,1.6-4.43,3.77-6.87,5.89-3.44-5.26-3.17-11.38-1.7-17.3,1.43-5.73,3.86-11.21,5.93-17.05-9.31,9.37-12,25.14-6.47,36.41,3.4,6.88,2.91,10.11-2.54,15.65-3.81,3.87-7.7,7.67-11.56,11.49-.08.09-.28,0-1.56.24-3.53-7-7.69-14.25-10.64-21.91-.93-2.41.87-6.33,2.33-9.09A62.33,62.33,0,0,1,294,323.53c5.87-7,6.64-14.9.87-21.44.6,2.75.84,4.63,1.41,6.4,1.42,4.41,0,8-2.92,11.27a62.57,62.57,0,0,0-5,6.17c-8.4,12.19-8.66,20-.1,33.61a48.23,48.23,0,0,1,5.95,14.84c1.41,6.31-1.07,12.08-4.93,17.26-2.95,4-5.57,8.16-8.79,12.92-7.39-10.2-16.2-18.63-12.24-32.93,4.44-16,2.83-31.93-4.22-47.2-3.05-6.61-2.91-13.68-1.74-20.73a17.05,17.05,0,0,0,.43-5c-3.84,5.08-4.48,10.91-3.12,16.78,2,8.55,4.61,17,6.88,25.45a50,50,0,0,1,.71,6c-11.59-6-22.66-10.72-32.59-17.2-6-3.91-5.65-11.6-3.94-18.25,1-4.06,3-7.88,3.71-12.37-1.11,1.83-2.32,3.6-3.3,5.5-7.74,14.84-3.58,27.63,13.24,34.73,6.48,2.74,12.85,5.75,19.15,8.89,4.11,2,5.11,5.65,4.17,10.07-1.19,5.57-2,11.22-3.19,16.81-1.71,8.23,1.71,14.94,6.29,21.23,4.4,6,9.2,11.73,10.6,19.48a21.34,21.34,0,0,0,3.94,8.32c5.68,7.7,6.25,16.67,6.37,25.55.28,22.05.18,44.1.05,66.15-.06,10.26-.55,20.51-.84,30.77Z" transform="translate(-227.35 -298.7)" fill="#68caff" stroke="#68caff" stroke-width=".45" stroke-linejoin="round" stroke-linecap="round"/>
+              </g>
+              <text x="94" y="215" text-anchor="middle" fill="#e8f7fa" font-size="13">Cool</text>
+            </g>
+            <g class="clickable" data-therm="coldpain" tabindex="0" role="button" aria-label="Cold pain thermosensory afferent">
+              <ellipse class="halo" cx="278" cy="87" rx="64" ry="79" fill="#a9a7ff"/>
+              <g transform="translate(278,18) scale(-0.81,0.688) translate(-68,0)">
+                <path class="outline" d="M295.29,546.61c.59-18.6,1.62-37.21,1.64-55.82,0-17.28-.9-34.58-1.8-51.84-.17-3.36-2.14-6.62-3.26-9.93-.65-1.9-1.73-3.81-1.78-5.74-.28-11.17,8.09-22.68,18.94-25.32a42.7,42.7,0,0,0,23-13.75c5.77-6.7,8-14.14,5.44-22.84-1.53-5.19-3-10.42-4-15.73-1.49-7.7,1.88-14.35,5.28-20.92a8.4,8.4,0,0,0,1-2.66,19.23,19.23,0,0,0-8,15.15c-.1,6.63.31,13.69,2.51,19.85,6,16.68-3.35,28.57-16.69,34.94a47.78,47.78,0,0,1-9.18,3.05c-11.07,2.74-16.8,10.54-20.14,20.73-.35,1.08-.75,2.15-1.16,3.33-4.59-3.86-5.39-10.54-2.05-15.92s6.91-10.57,10.07-16c2.47-4.28,2.94-8.9,2.49-14-.25-2.78,2.1-6.16,4-8.69,3.12-4.05,7.24-7.35,10.2-11.5a18.08,18.08,0,0,0,3.51-9.49c.12-5.07,1.67-8.62,5.86-11.49a18.81,18.81,0,0,0,8.57-14.69,13.6,13.6,0,0,1,6.4-11c2.07-1.35,3.48-3.72,4.91-5.86-9.53,6.08-11.34,8.6-14,18.49-1.23,4.51-3.43,8.33-7.49,11-2.4,1.6-4.43,3.77-6.87,5.89-3.44-5.26-3.17-11.38-1.7-17.3,1.43-5.73,3.86-11.21,5.93-17.05-9.31,9.37-12,25.14-6.47,36.41,3.4,6.88,2.91,10.11-2.54,15.65-3.81,3.87-7.7,7.67-11.56,11.49-.08.09-.28,0-1.56.24-3.53-7-7.69-14.25-10.64-21.91-.93-2.41.87-6.33,2.33-9.09A62.33,62.33,0,0,1,294,323.53c5.87-7,6.64-14.9.87-21.44.6,2.75.84,4.63,1.41,6.4,1.42,4.41,0,8-2.92,11.27a62.57,62.57,0,0,0-5,6.17c-8.4,12.19-8.66,20-.1,33.61a48.23,48.23,0,0,1,5.95,14.84c1.41,6.31-1.07,12.08-4.93,17.26-2.95,4-5.57,8.16-8.79,12.92-7.39-10.2-16.2-18.63-12.24-32.93,4.44-16,2.83-31.93-4.22-47.2-3.05-6.61-2.91-13.68-1.74-20.73a17.05,17.05,0,0,0,.43-5c-3.84,5.08-4.48,10.91-3.12,16.78,2,8.55,4.61,17,6.88,25.45a50,50,0,0,1,.71,6c-11.59-6-22.66-10.72-32.59-17.2-6-3.91-5.65-11.6-3.94-18.25,1-4.06,3-7.88,3.71-12.37-1.11,1.83-2.32,3.6-3.3,5.5-7.74,14.84-3.58,27.63,13.24,34.73,6.48,2.74,12.85,5.75,19.15,8.89,4.11,2,5.11,5.65,4.17,10.07-1.19,5.57-2,11.22-3.19,16.81-1.71,8.23,1.71,14.94,6.29,21.23,4.4,6,9.2,11.73,10.6,19.48a21.34,21.34,0,0,0,3.94,8.32c5.68,7.7,6.25,16.67,6.37,25.55.28,22.05.18,44.1.05,66.15-.06,10.26-.55,20.51-.84,30.77Z" transform="translate(-227.35 -298.7)" fill="#a9a7ff" stroke="#a9a7ff" stroke-width=".45" stroke-linejoin="round" stroke-linecap="round"/>
+              </g>
+              <text x="278" y="215" text-anchor="middle" fill="#e8f7fa" font-size="13">Cold pain</text>
+            </g>
+            <g class="clickable" data-therm="warm" tabindex="0" role="button" aria-label="Warm thermosensory afferent">
+              <ellipse class="halo" cx="458" cy="87" rx="64" ry="79" fill="#ffc477"/>
+              <g transform="translate(458,18) scale(0.76,0.673) translate(-68,0)">
+                <path class="outline" d="M295.29,546.61c.59-18.6,1.62-37.21,1.64-55.82,0-17.28-.9-34.58-1.8-51.84-.17-3.36-2.14-6.62-3.26-9.93-.65-1.9-1.73-3.81-1.78-5.74-.28-11.17,8.09-22.68,18.94-25.32a42.7,42.7,0,0,0,23-13.75c5.77-6.7,8-14.14,5.44-22.84-1.53-5.19-3-10.42-4-15.73-1.49-7.7,1.88-14.35,5.28-20.92a8.4,8.4,0,0,0,1-2.66,19.23,19.23,0,0,0-8,15.15c-.1,6.63.31,13.69,2.51,19.85,6,16.68-3.35,28.57-16.69,34.94a47.78,47.78,0,0,1-9.18,3.05c-11.07,2.74-16.8,10.54-20.14,20.73-.35,1.08-.75,2.15-1.16,3.33-4.59-3.86-5.39-10.54-2.05-15.92s6.91-10.57,10.07-16c2.47-4.28,2.94-8.9,2.49-14-.25-2.78,2.1-6.16,4-8.69,3.12-4.05,7.24-7.35,10.2-11.5a18.08,18.08,0,0,0,3.51-9.49c.12-5.07,1.67-8.62,5.86-11.49a18.81,18.81,0,0,0,8.57-14.69,13.6,13.6,0,0,1,6.4-11c2.07-1.35,3.48-3.72,4.91-5.86-9.53,6.08-11.34,8.6-14,18.49-1.23,4.51-3.43,8.33-7.49,11-2.4,1.6-4.43,3.77-6.87,5.89-3.44-5.26-3.17-11.38-1.7-17.3,1.43-5.73,3.86-11.21,5.93-17.05-9.31,9.37-12,25.14-6.47,36.41,3.4,6.88,2.91,10.11-2.54,15.65-3.81,3.87-7.7,7.67-11.56,11.49-.08.09-.28,0-1.56.24-3.53-7-7.69-14.25-10.64-21.91-.93-2.41.87-6.33,2.33-9.09A62.33,62.33,0,0,1,294,323.53c5.87-7,6.64-14.9.87-21.44.6,2.75.84,4.63,1.41,6.4,1.42,4.41,0,8-2.92,11.27a62.57,62.57,0,0,0-5,6.17c-8.4,12.19-8.66,20-.1,33.61a48.23,48.23,0,0,1,5.95,14.84c1.41,6.31-1.07,12.08-4.93,17.26-2.95,4-5.57,8.16-8.79,12.92-7.39-10.2-16.2-18.63-12.24-32.93,4.44-16,2.83-31.93-4.22-47.2-3.05-6.61-2.91-13.68-1.74-20.73a17.05,17.05,0,0,0,.43-5c-3.84,5.08-4.48,10.91-3.12,16.78,2,8.55,4.61,17,6.88,25.45a50,50,0,0,1,.71,6c-11.59-6-22.66-10.72-32.59-17.2-6-3.91-5.65-11.6-3.94-18.25,1-4.06,3-7.88,3.71-12.37-1.11,1.83-2.32,3.6-3.3,5.5-7.74,14.84-3.58,27.63,13.24,34.73,6.48,2.74,12.85,5.75,19.15,8.89,4.11,2,5.11,5.65,4.17,10.07-1.19,5.57-2,11.22-3.19,16.81-1.71,8.23,1.71,14.94,6.29,21.23,4.4,6,9.2,11.73,10.6,19.48a21.34,21.34,0,0,0,3.94,8.32c5.68,7.7,6.25,16.67,6.37,25.55.28,22.05.18,44.1.05,66.15-.06,10.26-.55,20.51-.84,30.77Z" transform="translate(-227.35 -298.7)" fill="#ffc477" stroke="#ffc477" stroke-width=".45" stroke-linejoin="round" stroke-linecap="round"/>
+              </g>
+              <text x="458" y="215" text-anchor="middle" fill="#e8f7fa" font-size="13">Warm</text>
+            </g>
+            <g class="clickable" data-therm="heatpain" tabindex="0" role="button" aria-label="Heat pain thermosensory afferent">
+              <ellipse class="halo" cx="642" cy="87" rx="64" ry="79" fill="#ff8694"/>
+              <g transform="translate(642,18) scale(-0.82,0.694) translate(-68,0)">
+                <path class="outline" d="M295.29,546.61c.59-18.6,1.62-37.21,1.64-55.82,0-17.28-.9-34.58-1.8-51.84-.17-3.36-2.14-6.62-3.26-9.93-.65-1.9-1.73-3.81-1.78-5.74-.28-11.17,8.09-22.68,18.94-25.32a42.7,42.7,0,0,0,23-13.75c5.77-6.7,8-14.14,5.44-22.84-1.53-5.19-3-10.42-4-15.73-1.49-7.7,1.88-14.35,5.28-20.92a8.4,8.4,0,0,0,1-2.66,19.23,19.23,0,0,0-8,15.15c-.1,6.63.31,13.69,2.51,19.85,6,16.68-3.35,28.57-16.69,34.94a47.78,47.78,0,0,1-9.18,3.05c-11.07,2.74-16.8,10.54-20.14,20.73-.35,1.08-.75,2.15-1.16,3.33-4.59-3.86-5.39-10.54-2.05-15.92s6.91-10.57,10.07-16c2.47-4.28,2.94-8.9,2.49-14-.25-2.78,2.1-6.16,4-8.69,3.12-4.05,7.24-7.35,10.2-11.5a18.08,18.08,0,0,0,3.51-9.49c.12-5.07,1.67-8.62,5.86-11.49a18.81,18.81,0,0,0,8.57-14.69,13.6,13.6,0,0,1,6.4-11c2.07-1.35,3.48-3.72,4.91-5.86-9.53,6.08-11.34,8.6-14,18.49-1.23,4.51-3.43,8.33-7.49,11-2.4,1.6-4.43,3.77-6.87,5.89-3.44-5.26-3.17-11.38-1.7-17.3,1.43-5.73,3.86-11.21,5.93-17.05-9.31,9.37-12,25.14-6.47,36.41,3.4,6.88,2.91,10.11-2.54,15.65-3.81,3.87-7.7,7.67-11.56,11.49-.08.09-.28,0-1.56.24-3.53-7-7.69-14.25-10.64-21.91-.93-2.41.87-6.33,2.33-9.09A62.33,62.33,0,0,1,294,323.53c5.87-7,6.64-14.9.87-21.44.6,2.75.84,4.63,1.41,6.4,1.42,4.41,0,8-2.92,11.27a62.57,62.57,0,0,0-5,6.17c-8.4,12.19-8.66,20-.1,33.61a48.23,48.23,0,0,1,5.95,14.84c1.41,6.31-1.07,12.08-4.93,17.26-2.95,4-5.57,8.16-8.79,12.92-7.39-10.2-16.2-18.63-12.24-32.93,4.44-16,2.83-31.93-4.22-47.2-3.05-6.61-2.91-13.68-1.74-20.73a17.05,17.05,0,0,0,.43-5c-3.84,5.08-4.48,10.91-3.12,16.78,2,8.55,4.61,17,6.88,25.45a50,50,0,0,1,.71,6c-11.59-6-22.66-10.72-32.59-17.2-6-3.91-5.65-11.6-3.94-18.25,1-4.06,3-7.88,3.71-12.37-1.11,1.83-2.32,3.6-3.3,5.5-7.74,14.84-3.58,27.63,13.24,34.73,6.48,2.74,12.85,5.75,19.15,8.89,4.11,2,5.11,5.65,4.17,10.07-1.19,5.57-2,11.22-3.19,16.81-1.71,8.23,1.71,14.94,6.29,21.23,4.4,6,9.2,11.73,10.6,19.48a21.34,21.34,0,0,0,3.94,8.32c5.68,7.7,6.25,16.67,6.37,25.55.28,22.05.18,44.1.05,66.15-.06,10.26-.55,20.51-.84,30.77Z" transform="translate(-227.35 -298.7)" fill="#ff8694" stroke="#ff8694" stroke-width=".45" stroke-linejoin="round" stroke-linecap="round"/>
+              </g>
+              <text x="642" y="215" text-anchor="middle" fill="#e8f7fa" font-size="13">Heat pain</text>
+            </g>
+          </svg>
+          <p class="note">Schematic only: all four populations terminate as unencapsulated afferent endings. Warm-associated TRPV3/TRPV4 signaling may also involve neighboring keratinocytes.</p>
+          <div class="topline"><span id="t-status" class="status">Ready · adapted at 32°C</span><span id="t-time" class="status">0.0 s recorded</span></div>
+        </section>
+        <div class="quiz-anatomy-hidden" aria-hidden="true"><div class="quiz-icon">◌ ◌ ◌</div><strong class="quiz-hidden-head">Anatomical clues are hidden</strong><div class="quiz-hidden-explain">You can inspect the endings after revealing the solutions.</div></div>
+        <section class="panel quiz-panel" aria-label="Identify the recordings">
+          <h2 class="quiz-title">Identify the afferents</h2>
+          <p class="quiz-instructions">Apply different stimuli, compare the anonymous recordings, and assign one identity to each unit. Every identity is used once.</p>
+          <div class="quiz-actions"><button class="quiz-check primary" type="button">Check predictions</button><button class="quiz-reveal" type="button">Reveal answers</button><button class="quiz-new" type="button">New challenge</button></div>
+          <p class="quiz-status" role="status" aria-live="polite">Choose an identity for each unit.</p>
+        </section>
+        <section class="panel">
+          <div class="records-top"><h2>Gap-free thermal recording</h2><div class="viewbuttons"><button id="t-live" class="active">Follow live</button><button id="t-full">Full history</button><button id="t-minus" class="zoom" aria-label="Zoom out">−</button><button id="t-plus" class="zoom" aria-label="Zoom in">+</button></div></div>
+          <p class="note">The temperature target is dashed; modeled skin temperature is solid. Click to place a shared cursor; drag to pan all recordings. Panning does not interrupt acquisition.</p>
+          <div class="thermoKey"><span><i class="swatch" style="background:var(--cool)"></i>Cool</span><span><i class="swatch" style="background:var(--coldpain)"></i>Cold pain</span><span><i class="swatch" style="background:var(--warm)"></i>Warm</span><span><i class="swatch" style="background:var(--heat)"></i>Heat pain</span></div>
+          <div class="rowrecord stimrow"><div class="record-label"><strong>Skin temperature</strong><small>Solid: skin · dashed: slider</small><div class="rate" id="t-cursorText">Cursor: —</div></div><canvas class="plot" id="t-tempCanvas"></canvas></div>
+          <div id="t-rows"></div>
+          <p class="note">Four continuous schematic afferent recordings. A transient burst appears when temperature changes, followed by a lower sustained rate. Warm and cool thermoreceptors have an illustrative preferred range; nociceptors are recruited at the extremes.</p>
+        </section>
+        <section class="panel pred-secret">
+          <div class="eyebrow">Functional thermal afferents and molecular contributors</div><h3 id="t-infoTitle"></h3><p id="t-infoBody" class="reading"></p>
+          <div class="infobox"><strong id="t-infoMolecules"></strong><p id="t-infoFunction"></p></div>
+          <div class="prediction" id="t-infoPrediction"></div><div class="related-references"><strong>Selected readings for this population</strong><div id="t-infoSources" class="reference-shortcuts"></div></div>
+          <div class="curvebox"><div class="topline"><strong>Illustrative steady-state tuning</strong><span class="pill">0–55°C</span></div><canvas class="curvecanvas" id="t-curves"></canvas><p class="tunefoot">Lines represent model tuning, not measured human dose–response curves. Live firing also depends on temperature change and adaptation.</p></div>
+        </section>
+        <section class="panel"><h2>Scientific context and limitations</h2><p class="note">The model separates functional peripheral afferents from their underlying molecular contributors. TRPM8 and TRPV1 have the strongest supporting evidence for innocuous cold and noxious heat. TRPA1 cold transduction remains debated; TRPV3 and TRPV4 are prominent in keratinocytes; there is no confidently established separate human “TRPV2 extreme-heat receptor.” The exact recruitment thresholds depend on skin region, baseline adaptation, rate and duration of stimulation.</p></section>
+        <section class="panel scientific-bibliography pred-secret" aria-label="Thermal scientific bibliography"><div class="topline"><div><div class="eyebrow">Further reading</div><h2>Thermal scientific bibliography <span class="ref-counter">10 sources</span></h2></div><span class="pill">Peer-reviewed literature</span></div><p class="note">Thermal categories are functional rather than one-channel/one-neuron identities. Human microneurography, molecular experiments, and animal models contribute different types of evidence; simulated temperature-response functions are not direct fits to human datasets.</p><details id="t-bibliography"><summary class="bib-toggle">Show 10 studies and reviews <span class="bib-hint">(citations, evidence type, and publication links)</span></summary><ol class="reference-list"><li id="ref-t01" class="reference-item"><div class="ref-head"><span class="ref-index">T01</span><span class="ref-tag">Human microneurography</span></div><p class="ref-citation">Konietzny F, Hensel H. The dynamic response of warm units in human skin nerves. Pflügers Arch. 1977. DOI: 10.1007/BF00707956.</p><p class="ref-explainer"><strong>Why it matters:</strong> Direct evidence for transient warming overshoot, dynamic sensitivity, and adaptation in human warm afferents.</p><a href="https://pubmed.ncbi.nlm.nih.gov/561379/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-t02" class="reference-item"><div class="ref-head"><span class="ref-index">T02</span><span class="ref-tag">Human microneurography</span></div><p class="ref-citation">Campero M, Serra J, Bostock H, Ochoa JL. Slowly conducting afferents activated by innocuous low temperature in human skin. J Physiol. 2001. DOI: 10.1111/j.1469-7793.2001.t01-1-00855.x.</p><p class="ref-explainer"><strong>Why it matters:</strong> Human innocuous cold-sensitive afferents, tonic activity and thermal adaptation.</p><a href="https://pubmed.ncbi.nlm.nih.gov/11559780/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-t03" class="reference-item"><div class="ref-head"><span class="ref-index">T03</span><span class="ref-tag">Human microneurography</span></div><p class="ref-citation">Campero M, Baumann TK, Bostock H, Ochoa JL. Human cutaneous C fibres activated by cooling, heating and menthol. J Physiol. 2009. DOI: 10.1113/jphysiol.2009.176040.</p><p class="ref-explainer"><strong>Why it matters:</strong> Shows distinct human C-fiber responses to cooling, heating and menthol, including overlap of thermal sensitivity.</p><a href="https://pubmed.ncbi.nlm.nih.gov/19822550/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-t04" class="reference-item"><div class="ref-head"><span class="ref-index">T04</span><span class="ref-tag">Molecular study</span></div><p class="ref-citation">Peier AM et al. A TRP channel that senses cold stimuli and menthol. Cell. 2002. DOI: 10.1016/S0092-8674(02)00652-9.</p><p class="ref-explainer"><strong>Why it matters:</strong> Early characterization of the cold- and menthol-sensitive TRPM8 channel.</p><a href="https://pubmed.ncbi.nlm.nih.gov/11893340/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-t05" class="reference-item"><div class="ref-head"><span class="ref-index">T05</span><span class="ref-tag">Molecular study</span></div><p class="ref-citation">McKemy DD, Neuhausser WM, Julius D. Identification of a cold receptor reveals a general role for TRP channels in thermosensation. Nature. 2002. DOI: 10.1038/nature719.</p><p class="ref-explainer"><strong>Why it matters:</strong> Independent identification of cold-sensitive TRPM8; channel activation is not identical to a human perceptual threshold.</p><a href="https://pubmed.ncbi.nlm.nih.gov/11882888/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-t06" class="reference-item"><div class="ref-head"><span class="ref-index">T06</span><span class="ref-tag">Molecular study</span></div><p class="ref-citation">Caterina MJ et al. The capsaicin receptor: a heat-activated ion channel in the pain pathway. Nature. 1997. DOI: 10.1038/39807.</p><p class="ref-explainer"><strong>Why it matters:</strong> Foundational identification of TRPV1 as a heat- and capsaicin-sensitive nociceptive channel.</p><a href="https://pubmed.ncbi.nlm.nih.gov/9349813/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-t07" class="reference-item"><div class="ref-head"><span class="ref-index">T07</span><span class="ref-tag">Experimental model</span></div><p class="ref-citation">Mandadi S et al. TRPV3 in keratinocytes transmits temperature information to sensory neurons via ATP. Pflügers Arch. 2009. DOI: 10.1007/s00424-009-0703-x.</p><p class="ref-explainer"><strong>Why it matters:</strong> Keratinocyte-to-neuron temperature signaling; does not establish TRPV3 as a unique human warm afferent.</p><a href="https://pubmed.ncbi.nlm.nih.gov/19669158/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-t08" class="reference-item"><div class="ref-head"><span class="ref-index">T08</span><span class="ref-tag">Review</span></div><p class="ref-citation">Zhang H et al. The role of TRPA1 channels in thermosensation. Cell Insight. 2022. DOI: 10.1016/j.cellin.2022.100059.</p><p class="ref-explainer"><strong>Why it matters:</strong> Reviews species differences and disagreement concerning direct TRPA1-mediated cold detection.</p><a href="https://pubmed.ncbi.nlm.nih.gov/37193355/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-t09" class="reference-item"><div class="ref-head"><span class="ref-index">T09</span><span class="ref-tag">Human experimental study</span></div><p class="ref-citation">Heber S, Resch F, Ciotu CI, et al. Human heat sensation: A randomized crossover trial. Sci Adv. 2024;10(36):eado3498. DOI: 10.1126/sciadv.ado3498.</p><p class="ref-explainer"><strong>Why it matters:</strong> In this human pharmacological study, TRPV1 inhibition reduced heat pain, whereas inhibition of TRPA1, TRPM3, or ANO1 did not show a significant contribution; other heat-sensing mechanisms remain unidentified.</p><a href="https://pubmed.ncbi.nlm.nih.gov/39231217/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li><li id="ref-t10" class="reference-item"><div class="ref-head"><span class="ref-index">T10</span><span class="ref-tag">Review (human evidence)</span></div><p class="ref-citation">Namer B, Lampert A. Functional signatures of human somatosensory C fibers by microneurography. Pain. 2025. DOI: 10.1097/j.pain.0000000000003605.</p><p class="ref-explainer"><strong>Why it matters:</strong> Recent synthesis of human C-fiber functional diversity, including thermal and nociceptive subtypes.</p><a href="https://pubmed.ncbi.nlm.nih.gov/40294386/" target="_blank" rel="noopener noreferrer">Open publication ↗</a></li></ol></details></section>
+      </div>
+    </div>
+  </section>
+  <footer class="project-credit" aria-label="Project credits">
+  <span>Created by Jorge Ramírez Franco and ChatGPT (OpenAI)</span>
+  <span class="credit-department">Department of Physiology · Complutense University of Madrid</span>
+  <div class="license-notice" aria-label="Licensing / Licencias">
+    <span>Noncommercial use only</span>
+    <span class="license-separator" aria-hidden="true"> · </span>
+    <a href="https://polyformproject.org/licenses/noncommercial/1.0.0" target="_blank" rel="license noopener noreferrer">Code: PolyForm Noncommercial 1.0.0</a>
+    <span class="license-separator" aria-hidden="true"> · </span>
+    <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="license noopener noreferrer">Educational content: CC BY-NC 4.0</a>
+  </div>
+</footer>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const clamp=(x,a,b)=>Math.min(b,Math.max(a,x));
+const mIds=['meissner','merkel','pacinian','sa2','noci'];
+const tIds=['cool','coldpain','warm','heatpain'];
+const tColors={cool:'#68caff',coldpain:'#a9a7ff',warm:'#ffc477',heatpain:'#ff8694'};
+// Scientific reading links only; they do not affect physiological simulations.
+const sourceMeta = {"M01":{"short":"Johansson RS (1979)","url":"https://pubmed.ncbi.nlm.nih.gov/439026/"},"M02":{"short":"Johansson RS (1979)","url":"https://pubmed.ncbi.nlm.nih.gov/536918/"},"M03":{"short":"Johnson KO (2001)","url":"https://pubmed.ncbi.nlm.nih.gov/11502392/"},"M04":{"short":"Saal HP (2014)","url":"https://pubmed.ncbi.nlm.nih.gov/25257208/"},"M05":{"short":"LaMotte RH (1975)","url":"https://pubmed.ncbi.nlm.nih.gov/1127456/"},"M06":{"short":"Johansson RS (1987)","url":"https://pubmed.ncbi.nlm.nih.gov/3582528/"},"M07":{"short":"Westling G (1987)","url":"https://doi.org/10.1007/BF00236209"},"M08":{"short":"Birznieks I (2001)","url":"https://pubmed.ncbi.nlm.nih.gov/11588194/"},"M09":{"short":"Edin BB (1992)","url":"https://pubmed.ncbi.nlm.nih.gov/1597700/"},"M10":{"short":"Paré M (2003)","url":"https://pubmed.ncbi.nlm.nih.gov/12528190/"},"M11":{"short":"Woo SH et al. (2014)","url":"https://pubmed.ncbi.nlm.nih.gov/24717433/"},"M12":{"short":"Maksimovic S et al. (2014)","url":"https://doi.org/10.1038/nature13250"},"M13":{"short":"Chesler AT et al. (2016)","url":"https://pubmed.ncbi.nlm.nih.gov/27653382/"},"M14":{"short":"Weidner C et al. (1999)","url":"https://pubmed.ncbi.nlm.nih.gov/10559426/"},"M15":{"short":"Schmidt R (2000)","url":"https://pubmed.ncbi.nlm.nih.gov/10891622/"},"M16":{"short":"Schmelz M et al. (1994)","url":"https://pubmed.ncbi.nlm.nih.gov/7869253/"},"M17":{"short":"Abraira VE (2013)","url":"https://pubmed.ncbi.nlm.nih.gov/23972592/"},"T01":{"short":"Konietzny F (1977)","url":"https://pubmed.ncbi.nlm.nih.gov/561379/"},"T02":{"short":"Campero M (2001)","url":"https://pubmed.ncbi.nlm.nih.gov/11559780/"},"T03":{"short":"Campero M (2009)","url":"https://pubmed.ncbi.nlm.nih.gov/19822550/"},"T04":{"short":"Peier AM et al. (2002)","url":"https://pubmed.ncbi.nlm.nih.gov/11893340/"},"T05":{"short":"McKemy DD (2002)","url":"https://pubmed.ncbi.nlm.nih.gov/11882888/"},"T06":{"short":"Caterina MJ et al. (1997)","url":"https://pubmed.ncbi.nlm.nih.gov/9349813/"},"T07":{"short":"Mandadi S et al. (2009)","url":"https://pubmed.ncbi.nlm.nih.gov/19669158/"},"T08":{"short":"Zhang H et al. (2022)","url":"https://pubmed.ncbi.nlm.nih.gov/37193355/"},"T09":{"short":"Human heat sensation (2024)","url":"https://pubmed.ncbi.nlm.nih.gov/39231217/"},"T10":{"short":"Namer B (2025)","url":"https://pubmed.ncbi.nlm.nih.gov/40294386/"}};
+const mechSourceKeys = {"meissner":["M01","M03","M05","M06","M07","M04"],"merkel":["M01","M03","M11","M12","M13"],"pacinian":["M01","M02","M05","M03","M04"],"sa2":["M01","M08","M09","M10","M03"],"noci":["M14","M15","M16","M17"]};
+const thermalSourceKeys = {"cool":["T02","T03","T04","T05"],"coldpain":["T03","T08","T10"],"warm":["T01","T07","T09"],"heatpain":["T06","T09","T10"]};
+function showRelevantSources(elementId, ids) {
+  const container = $(elementId);
+  container.replaceChildren();
+  for (const id of ids) {
+    const ref = sourceMeta[id];
+    const link = document.createElement('a');
+    link.href = ref.url; link.target = '_blank'; link.rel = 'noopener noreferrer';
+    link.textContent = id + ' · ' + ref.short + ' ↗';
+    link.title = tr('paperTitle')+id;
+    container.appendChild(link);
+  }
+}
+
+const mechNames={meissner:'Meissner · FA I',merkel:'Merkel · SA I',pacinian:'Pacinian · FA II',sa2:'Ruffini · SA II',noci:'Mechanical nociceptors'};
+const mechInfo={
+  "meissner": {
+    "body": "Superficial, small receptive field, rapidly adapting, primary receptor. Particularly sensitive to changing skin deformation and low-frequency vibration. With constant pressure it responds mainly when pressure starts and stops. Human recordings show strongest vibration sensitivity broadly in the low-frequency range, especially around several tens of hertz.",
+    "function": "Detecting movement and adjusting grip",
+    "life": "Meissner afferents help detect gentle contact and movement across the skin. When an object begins to slip between the fingers, changing skin deformation provides information that can help us adjust our grip before dropping it. These afferents also contribute to sensing light brushing and low-frequency vibration.",
+    "pressure": "Expected: brief onset and release responses.",
+    "vibration": "Expected: strong low-frequency vibration response."
+  },
+  "merkel": {
+    "body": "Superficial, small receptive field, slowly adapting, secondary receptor in the course classification. Signals sustained pressure and spatial features such as edges and shape. Its afferent continues firing during maintained mechanical stimulation but adapts over time.",
+    "function": "Recognizing shapes and fine details",
+    "life": "Merkel-associated afferents provide detailed information about where and how the skin is deformed. They are particularly important for recognizing edges, contours, curvature, and fine spatial features. When you identify a small raised symbol or explore an object's shape with your fingertips, these afferents contribute to the information your brain uses.",
+    "pressure": "Expected: sustained firing during pressure, with gradual adaptation.",
+    "vibration": "Expected: greater response to slow changes than to high-frequency vibration.",
+    "extra": "PIEZO2 contributes to mechanotransduction in the Merkel cell–neurite complex. The action potentials shown belong to the sensory afferent neuron, not to the Merkel cell."
+  },
+  "pacinian": {
+    "body": "Deep, large receptive field, rapidly adapting, primary receptor. Very sensitive to rapid mechanical changes and high-frequency vibration, with strongest sensitivity around a few hundred hertz. Under constant pressure it is mainly active at stimulus onset and release.",
+    "function": "Detecting vibration and transmitted mechanical events",
+    "life": "Pacinian afferents are extraordinarily sensitive to rapid mechanical changes. They help us detect high-frequency vibrations transmitted through the skin, including vibrations produced when manipulating tools or moving objects across textured surfaces. They can signal mechanical events occurring beyond the immediate point of skin contact.",
+    "pressure": "Expected: brief onset and offset bursts.",
+    "vibration": "Expected: strong response near a few hundred hertz."
+  },
+  "sa2": {
+    "body": "Deep, large receptive field, slowly adapting, primary receptor. Particularly associated with skin stretch, hand configuration and sustained deformation. It may respond to pressure, but pressure is not the ideal stimulus for demonstrating its function. Classical Ruffini corpuscles are surprisingly rare in human glabrous finger skin, so the precise anatomical ending corresponding to human SA II activity remains uncertain.",
+    "function": "Skin stretch and hand configuration",
+    "life": "SA II afferents respond particularly to sustained skin stretch. Their activity may contribute information about finger movements, hand configuration, and skin deformation during grasping. This information can support sensory control of hand posture and grip. However, the precise anatomical structures responsible for human SA II responses remain uncertain.",
+    "pressure": "Expected: a modest sustained response. Skin stretch would be a better stimulus.",
+    "vibration": "Expected: limited vibration response."
+  },
+  "noci": {
+    "body": "High-threshold free nerve endings. Mechanical pain is encoded by heterogeneous myelinated and unmyelinated nociceptive afferents. Mechanically sensitive C fibers are commonly polymodal; some mechanically insensitive C fibers become mechanically responsive after sensitization.",
+    "function": "Detecting potentially damaging mechanical forces",
+    "life": "High-threshold mechanosensitive afferents contribute to detecting potentially harmful mechanical stimulation, such as strong pinching, crushing pressure, or sharp mechanical contact. Their signals participate in protective responses and pain perception. Unlike low-threshold mechanoreceptors, they are recruited preferentially by potentially damaging stimulation, although mechanical nociceptors are physiologically heterogeneous.",
+    "pressure": "Expected: recruitment at high relative intensity.",
+    "vibration": "Expected: recruitment at high relative intensity. This is not a calibrated vibration-pain model."
+  }
+};
+const thermalInfo={
+cool:{name:'Cool thermoreceptors',molecules:'TRPM8 — principal established molecular contributor',body:'Innocuous cooling recruits cold-sensitive afferents. At an adapted temperature near 32°C, some units have low tonic discharge. Activity rises when skin cools, often peaking across a broad range around 15–20°C. Faster cooling creates a transient overshoot, followed by partial adaptation.',life:'Examples: feeling a cool breeze, detecting contact with a cold surface, noticing the temperature change when entering cool water. TRPC5 has been proposed as an additional cold-sensitive channel, but its sensory importance is unsettled.',prediction:'Model: increasing cool response to ~15°C, followed by a gentle decline toward 0°C. The declining part is illustrative, not obligatory for every human cold afferent.'},
+coldpain:{name:'Cold nociceptors',molecules:'TRPM8 contribution · TRPA1 cold transduction debated',body:'Very intense cooling recruits polymodal or high-threshold cold-sensitive afferents. Noxious cold cannot be assigned to one molecular channel or one universal temperature. The modeled recruitment begins gradually below approximately 15–18°C.',life:'Examples: an ice-cold object that shifts from feeling cool to unpleasant, stinging, or painful. TRPA1 is particularly well supported in chemical nociception, but its role as a direct mammalian cold sensor remains controversial.',prediction:'Model: initially silent during mild cool conditions; progressively stronger discharge during intense cooling.'},
+warm:{name:'Warm thermoreceptors',molecules:'Warm-sensitive C afferents · TRPV3/TRPV4 particularly in keratinocytes',body:'Warm-specific afferents can discharge tonically near normal skin temperature and increase activity during warming. They often produce a transient burst during a warming ramp, then partially adapt when warmth is held. This simulation represents a broad preferred response range near 38–42°C.',life:'Examples: feeling a warm mug or a warm room after a cool environment. TRPV3 and TRPV4 are well studied in epidermal keratinocytes and can influence sensory signaling, but they are not equivalent to two separate, identified human warm-afferent types.',prediction:'Model: increasing response above ~30°C, saturating near 38–42°C, followed by a modest modeled decline as noxious heat afferents become active.'},
+heatpain:{name:'Heat nociceptors',molecules:'TRPV1 — strong evidence · ANO1/TMEM16A proposed contributor',body:'High-threshold heat-sensitive nociceptors are recruited in the low-to-mid 40s°C, with large individual variability. Thermal injury risk and pain depend on exposure duration and other factors; there is no universal 45°C pain switch.',life:'Examples: contact with a dangerously hot surface or a burning heat stimulus. The molecular evidence for TRPV1 is stronger than for other proposed heat sensors in humans. TRPV2 is not treated as an established separate >50°C human sensor.',prediction:'Model: progressive recruitment from approximately 42–45°C, rising toward 55°C. Model temperatures are illustrative and do not predict pain in an individual.'}
+};
+
+// Academic Spanish (Spain) interface. The source literature and simulation parameters are not translated.
+let locale='en';
+const staticSpanish={"Interactive physiology laboratory": "Laboratorio interactivo de fisiología", "Cutaneous sensory receptors": "Receptores sensoriales cutáneos", "From mechanical forces to changes in skin temperature": "De las fuerzas mecánicas a las variaciones de temperatura cutánea", "◉ Mechanoreception": "◉ Mecanorrecepción", "◉ Temperature": "◉ Termorrecepción", "Explore how cutaneous afferents respond to sustained pressure and vibration.": "Compara las respuestas de distintas fibras aferentes a la presión mantenida y a la vibración.", "Mechanical stimulus": "Estímulo mecánico", "Stimulus type": "Tipo de estímulo", "Pressure": "Presión", "Vibration": "Vibración", "Intensity": "Intensidad", "Relative intensity; not calibrated to kPa": "Intensidad relativa; no calibrada en kPa", "Duration": "Duración", "Vibration frequency": "Frecuencia de vibración", "▶ Apply stimulus": "▶ Aplicar estímulo", "Reset recording": "Reiniciar registro", "Suggested comparisons: pressure at 60%; vibration at 30 Hz vs 250 Hz; pressure at 90%. The nociceptor recruitment threshold is an illustrative 78%.": "Comparaciones propuestas: presión al 60 %; vibración a 30 Hz frente a 250 Hz; presión al 90 %. El umbral de reclutamiento de los nociceptores (78 %) es ilustrativo.", "Cutaneous receptor locations": "Localización de los receptores cutáneos", "Select a receptor": "Selecciona un receptor", "HUMAN GLABROUS SKIN  /  MECHANORECEPTION": "PIEL GLABRA HUMANA  /  MECANORRECEPCIÓN", "Afferent endings across skin layers": "Terminaciones aferentes en las capas de la piel", "EPIDERMIS": "EPIDERMIS", "Stratified epithelium": "Epitelio estratificado", "DERMIS": "DERMIS", "Connective tissue": "Tejido conjuntivo", "HYPODERMIS": "HIPODERMIS", "Subcutaneous tissue": "Tejido subcutáneo", "Basal epidermis": "Región basal de la epidermis", "FA I · superficial": "FA I · superficial", "Merkel complex": "Complejo de Merkel", "SA I · basal epidermis": "SA I · epidermis basal", "Free endings": "Terminaciones libres", "High-threshold nociceptor": "Nociceptor de umbral alto", "Ruffini · SA II": "Ruffini · SA II", "Deep · stretch-sensitive": "Profundo · sensible al estiramiento", "Pacinian": "Pacini", "FA II · deep": "FA II · profundo", "Teaching schematic · Relative depth and receptor size are illustrative, not to scale.": "Esquema docente · La profundidad y el tamaño relativos de los receptores son ilustrativos; no está a escala.", "Human SA II anatomical correlate remains uncertain.": "La correspondencia anatómica de las aferentes SA II en humanos sigue siendo incierta.", "Stimulus and afferent recordings": "Estímulo y registros de fibras aferentes", "Live": "En directo", "Full trial": "Registro completo", "Click to place a shared cursor; drag horizontally to pan all traces. + / − zoom around your cursor.": "Haz clic para situar el cursor temporal compartido; arrastra horizontalmente para desplazar todos los registros. Utiliza + / − para ampliar o reducir la escala temporal.", "Continuous schematic afferent voltage; baseline −70 mV. Unacquired portions are darkened. Orange markers indicate stimulus onset and release.": "Registros continuos y esquemáticos del potencial de membrana de las fibras aferentes; potencial basal de −70 mV. Las zonas aún no registradas aparecen oscurecidas. Las marcas naranjas indican el inicio y el final del estímulo.", "Receptor physiology": "Fisiología del receptor", "Selected readings for this receptor": "Bibliografía seleccionada para este receptor", "Further reading": "Bibliografía complementaria", "Mechanical scientific bibliography": "Bibliografía científica sobre mecanorrecepción", "17 sources": "17 referencias", "Peer-reviewed literature": "Publicaciones científicas revisadas por pares", "For the mechanoreceptors, the four low-threshold classes are grounded in human physiology, but some molecular and anatomical studies use animal models. The simulator does not reproduce the firing rates or thresholds from any individual paper.": "La clasificación de los cuatro tipos de mecanorreceptores de umbral bajo se fundamenta en estudios fisiológicos realizados en humanos, aunque algunos trabajos moleculares y anatómicos emplean modelos animales. El simulador no reproduce las frecuencias de descarga ni los umbrales de un artículo concreto.", "Show 17 studies and reviews": "Mostrar 17 estudios y revisiones", "(citations, evidence type, and publication links)": "(referencias, tipo de evidencia y enlaces a las publicaciones)", "Human genetic study": "Estudio genético en humanos", "Human microneurography": "Microneurografía humana", "Human physiology": "Fisiología humana", "Review": "Revisión", "Human psychophysics + nonhuman primate physiology": "Psicofísica humana y fisiología de primates no humanos", "Human physiology (hairy skin)": "Fisiología humana (piel con vello)", "Molecular study": "Estudio molecular", "Experimental model": "Modelo experimental", "Human experimental study": "Estudio experimental en humanos", "Review (human evidence)": "Revisión (evidencia en humanos)", "Why it matters:": "Relevancia:", "Open publication ↗": "Abrir publicación ↗", "Explore how cold- and heat-sensitive afferents respond as skin temperature changes.": "Observa cómo varía la actividad de las fibras termosensibles al enfriar o calentar la piel.", "Skin temperature": "Temperatura cutánea", "Move the slider": "Desplaza el control", "while recording": "durante la adquisición", ". There is no need to apply a new stimulus; the trace stays continuous.": ". No es necesario aplicar un estímulo nuevo: el registro es continuo.", "Temperature target": "Temperatura objetivo", "32°C adapted": "32 °C (adaptación)", "Slider target": "Temperatura seleccionada", "Simulated skin": "Piel simulada", "The simulated skin temperature approaches the slider target at up to 8°C/s. This produces observable warming and cooling transients instead of physically impossible instantaneous jumps.": "La temperatura cutánea simulada se aproxima a la temperatura seleccionada a una velocidad máxima de 8 °C/s. Así se observan respuestas transitorias al calentamiento y al enfriamiento, en lugar de saltos instantáneos físicamente irreales.", "▶ Start live recording": "▶ Iniciar registro en directo", "Reset thermal recording": "Reiniciar registro térmico", "Try this": "Prueba este experimento", "Start at 32°C. Cool to 20°C, hold, then cool to 8°C. Return to 32°C; warm to 40°C, then to 48°C. Compare transient bursts with sustained discharge.": "Comienza a 32 °C. Enfría hasta 20 °C y mantén la temperatura; después, desciende a 8 °C. Vuelve a 32 °C, calienta hasta 40 °C y luego hasta 48 °C. Compara las descargas transitorias con la actividad sostenida.", "All temperatures are illustrative model values, not absolute human pain thresholds. This is a virtual demonstration, not an instruction to expose skin to extreme temperatures.": "Todas las temperaturas son valores ilustrativos del modelo, no umbrales absolutos de dolor en humanos. Se trata de una demostración virtual, no de una recomendación para exponer la piel a temperaturas extremas.", "Free nerve endings in skin": "Terminaciones nerviosas libres en la piel", "Four functional populations, not four different encapsulated organs": "Cuatro poblaciones funcionales, no cuatro órganos encapsulados diferentes", "Cool": "Frío inocuo", "Cold pain": "Frío nocivo", "Warm": "Calor inocuo", "Heat pain": "Calor nocivo", "Schematic only: all four populations terminate as unencapsulated afferent endings. Warm-associated TRPV3/TRPV4 signaling may also involve neighboring keratinocytes.": "Esquema ilustrativo: las cuatro poblaciones presentan terminaciones aferentes no encapsuladas. La señalización térmica asociada a TRPV3/TRPV4 también puede implicar a los queratinocitos vecinos.", "Gap-free thermal recording": "Registro térmico continuo", "Follow live": "En directo", "Full history": "Registro completo", "The temperature target is dashed; modeled skin temperature is solid. Click to place a shared cursor; drag to pan all recordings. Panning does not interrupt acquisition.": "La temperatura objetivo se representa con una línea discontinua y la temperatura cutánea simulada, con una línea continua. Haz clic para situar el cursor temporal compartido y arrastra para desplazarte por los registros. El desplazamiento no interrumpe la adquisición.", "Solid: skin · dashed: slider": "Continua: piel · discontinua: valor seleccionado", "Four continuous schematic afferent recordings. A transient burst appears when temperature changes, followed by a lower sustained rate. Warm and cool thermoreceptors have an illustrative preferred range; nociceptors are recruited at the extremes.": "Cuatro registros esquemáticos continuos de fibras aferentes. Los cambios de temperatura producen un aumento transitorio de la frecuencia de descarga, seguido de una actividad sostenida menor. Los termorreceptores de frío y calor inocuos presentan rangos de respuesta preferente; los nociceptores se reclutan a temperaturas extremas.", "Functional thermal afferents and molecular contributors": "Fibras aferentes térmicas y mecanismos moleculares implicados", "Selected readings for this population": "Bibliografía seleccionada para esta población", "Illustrative steady-state tuning": "Curvas ilustrativas de respuesta en estado estacionario", "Lines represent model tuning, not measured human dose–response curves. Live firing also depends on temperature change and adaptation.": "Las curvas representan la sensibilidad térmica del modelo, no relaciones dosis-respuesta medidas en humanos. La frecuencia de descarga también depende de la velocidad del cambio térmico y de la adaptación.", "Scientific context and limitations": "Contexto científico y limitaciones", "The model separates functional peripheral afferents from their underlying molecular contributors. TRPM8 and TRPV1 have the strongest supporting evidence for innocuous cold and noxious heat. TRPA1 cold transduction remains debated; TRPV3 and TRPV4 are prominent in keratinocytes; there is no confidently established separate human “TRPV2 extreme-heat receptor.” The exact recruitment thresholds depend on skin region, baseline adaptation, rate and duration of stimulation.": "El modelo distingue entre poblaciones funcionales de fibras aferentes periféricas y los mecanismos moleculares que contribuyen a su actividad. TRPM8 y TRPV1 cuentan con evidencia especialmente sólida para el frío inocuo y el calor nocivo, respectivamente. La participación de TRPA1 en la transducción del frío sigue siendo objeto de debate; TRPV3 y TRPV4 tienen una expresión importante en queratinocitos; y no está claramente demostrado que exista en humanos un receptor independiente de calor extremo definido por TRPV2. Los umbrales de reclutamiento dependen de la región cutánea, el estado de adaptación, la velocidad del estímulo y su duración.", "Thermal scientific bibliography": "Bibliografía científica sobre termorrecepción", "10 sources": "10 referencias", "Thermal categories are functional rather than one-channel/one-neuron identities. Human microneurography, molecular experiments, and animal models contribute different types of evidence; simulated temperature-response functions are not direct fits to human datasets.": "Las categorías térmicas describen funciones aferentes y no equivalencias unívocas entre canales y neuronas. Los estudios de microneurografía humana, los experimentos moleculares y los modelos animales aportan evidencias de distinta naturaleza. Las funciones térmicas simuladas no son ajustes directos a datos experimentales humanos.", "Show 10 studies and reviews": "Mostrar 10 estudios y revisiones", "0–55°C": "0–55 °C", "Meissner": "Meissner", "Merkel": "Merkel", "Ready · baseline": "Preparado · línea de base", "Cursor: —": "Cursor temporal: —", "Ready · adapted at 32°C": "Preparado · adaptado a 32 °C", "0.0 s recorded": "0,0 s registrados", "Pressure · 60%": "Presión · 60 %", "Foundational identification, distribution and receptive fields of the four low-threshold tactile afferent classes.": "Identificación fundamental de los cuatro tipos de aferentes táctiles de umbral bajo, su distribución y sus campos receptores.", "Relates afferent thresholds to human tactile perception; explains why absolute stimulus intensity cannot be inferred from this simulator.": "Relaciona los umbrales de las fibras aferentes con la percepción táctil humana y explica por qué no puede inferirse una intensidad absoluta del estímulo a partir del simulador.", "Classic synthesis of discriminative touch, spatial information, vibration, and different afferent functions.": "Revisión clásica de las funciones del tacto discriminativo, la información espacial, la vibración y las diferentes poblaciones aferentes.", "Explains that tactile perception integrates multiple afferent populations rather than reading one receptor in isolation.": "Explica que la percepción táctil surge de la integración de varias poblaciones aferentes, no de la actividad aislada de un único receptor.", "Relates frequency-dependent vibrotactile behavior to mechanoreceptive afferents; model tuning is qualitative, not a fitted curve.": "Relaciona la discriminación vibrotáctil dependiente de la frecuencia con la fisiología de los mecanorreceptores. Las curvas del modelo son cualitativas y no constituyen ajustes a datos experimentales.", "Demonstrates how tactile afferent signals generated by slip influence rapid grip adjustments.": "Demuestra cómo las señales táctiles generadas por el deslizamiento contribuyen a los ajustes rápidos de la fuerza de prensión.", "Single-afferent responses during precision grip, including marked FA I recruitment at initial contact.": "Describe las respuestas de fibras aferentes individuales durante la prensión de precisión, incluida la importante activación de las FA I en el contacto inicial.", "Shows direction-sensitive responses across FA I, SA I and SA II classes during fingertip loading.": "Describe la codificación de la dirección de las fuerzas aplicadas sobre la yema de los dedos por las aferentes FA I, SA I y SA II.", "Demonstrates sustained skin-stretch sensitivity of slowly adapting afferents; note that hairy skin differs from glabrous fingertip skin.": "Demuestra la sensibilidad al estiramiento cutáneo mantenido de ciertas fibras de adaptación lenta. Debe tenerse en cuenta que la piel con vello difiere de la piel glabra de los dedos.", "Supports caution when assigning a specific Ruffini corpuscle morphology to human SA II afferent recordings.": "Justifica la cautela al atribuir una morfología concreta de corpúsculo de Ruffini a los registros de aferentes SA II en la piel glabra humana.", "Mechanistic evidence for PIEZO2-dependent mechanotransduction in Merkel cells; not a direct human unit recording.": "Aporta evidencia mecanística de la participación de PIEZO2 en la mecanotransducción de las células de Merkel; no se trata de un registro directo de fibras humanas.", "Demonstrates active Merkel-cell contributions to sustained SA I-like tactile signaling.": "Demuestra que las células de Merkel contribuyen activamente a la señalización táctil sostenida característica de las aferentes SA I.", "Loss-of-function cases support PIEZO2 involvement in discriminative touch and proprioception.": "Los casos humanos de pérdida de función de PIEZO2 respaldan su participación en el tacto discriminativo y la propiocepción.", "Human mechanical nociceptors are heterogeneous; supports keeping the high-intensity recruitment threshold illustrative.": "Los nociceptores mecánicos humanos son heterogéneos, por lo que el umbral de reclutamiento del modelo debe considerarse ilustrativo.", "Pressure can recruit initially mechanically insensitive C afferents, demonstrating activity patterns beyond one generic nociceptor.": "La presión puede reclutar fibras C inicialmente insensibles a estímulos mecánicos, lo que demuestra patrones de actividad más complejos que los de un nociceptor genérico.", "Demonstrates sensitization of C-fiber branches and changing mechanical responsiveness.": "Demuestra la sensibilización de ramas de fibras C y las modificaciones de su sensibilidad a estímulos mecánicos.", "Broader anatomical and physiological context for the sensory neurons involved in touch.": "Ofrece un contexto anatómico y fisiológico amplio sobre las neuronas sensitivas implicadas en el tacto.", "Direct evidence for transient warming overshoot, dynamic sensitivity, and adaptation in human warm afferents.": "Evidencia directa del aumento transitorio de la descarga durante el calentamiento, la sensibilidad dinámica y la adaptación en aferentes humanas de calor inocuo.", "Human innocuous cold-sensitive afferents, tonic activity and thermal adaptation.": "Describe fibras aferentes humanas sensibles al frío inocuo, su actividad tónica y su adaptación térmica.", "Shows distinct human C-fiber responses to cooling, heating and menthol, including overlap of thermal sensitivity.": "Documenta distintas respuestas de fibras C cutáneas humanas al enfriamiento, al calentamiento y al mentol, así como el solapamiento de sensibilidades térmicas.", "Early characterization of the cold- and menthol-sensitive TRPM8 channel.": "Caracterización temprana del canal TRPM8, sensible al frío y al mentol.", "Independent identification of cold-sensitive TRPM8; channel activation is not identical to a human perceptual threshold.": "Identificación independiente de TRPM8 como canal sensible al frío. Su activación molecular no equivale a un umbral perceptivo humano.", "Foundational identification of TRPV1 as a heat- and capsaicin-sensitive nociceptive channel.": "Identificación fundamental de TRPV1 como canal nociceptivo activado por calor y capsaicina.", "Keratinocyte-to-neuron temperature signaling; does not establish TRPV3 as a unique human warm afferent.": "Estudia la transmisión de información térmica desde queratinocitos a neuronas mediante TRPV3 y ATP; no demuestra que TRPV3 defina una población aferente humana exclusiva.", "Reviews species differences and disagreement concerning direct TRPA1-mediated cold detection.": "Revisa las diferencias entre especies y la controversia sobre la detección directa del frío mediada por TRPA1.", "In this human pharmacological study, TRPV1 inhibition reduced heat pain, whereas inhibition of TRPA1, TRPM3, or ANO1 did not show a significant contribution; other heat-sensing mechanisms remain unidentified.": "Este estudio farmacológico en humanos muestra que el bloqueo de TRPV1 reduce el dolor por calor, mientras que la inhibición de TRPA1, TRPM3 o ANO1 no reveló una contribución significativa; quedan mecanismos de detección del calor por identificar.", "Recent synthesis of human C-fiber functional diversity, including thermal and nociceptive subtypes.": "Revisión reciente de la diversidad funcional de las fibras C humanas, incluidos los subtipos térmicos y nociceptivos.", "Glabrous skin with Meissner corpuscle in a dermal papilla, Merkel cell-neurite complex at the basal epidermis, epidermal free nerve endings of mechanical nociceptors, a possible SA II deep ending, and a lamellated Pacinian corpuscle at the deep dermis/hypodermis. All five receptor groups are distinct SVG groups for use in an interactive teaching simulator.": "Esquema de piel glabra que representa un corpúsculo de Meissner superficial, un complejo célula de Merkel–neurita junto a la epidermis basal, terminaciones libres de nociceptores mecánicos, una terminación profunda esquemática SA II y un corpúsculo de Pacini laminado. Cada grupo SVG permite seleccionar su correspondiente aferente.", "Cutaneous mechanoreceptors — free nerve endings and tactile receptors": "Mecanorreceptores cutáneos: terminaciones nerviosas libres y receptores táctiles"};
+staticSpanish['Created by Jorge Ramírez Franco and ChatGPT (OpenAI)'] = 'Creado por Jorge Ramírez Franco y ChatGPT (OpenAI)';
+staticSpanish["Department of Physiology · Complutense University of Madrid"] = "Departamento de Fisiología · Universidad Complutense de Madrid";
+staticSpanish['Noncommercial use only'] = 'Solo para uso no comercial';
+staticSpanish['Code: PolyForm Noncommercial 1.0.0'] = 'Código: PolyForm Noncommercial 1.0.0';
+staticSpanish['Educational content: CC BY-NC 4.0'] = 'Contenido didáctico: CC BY-NC 4.0';
+const attributeSpanish={"Sensory modality": "Modalidad sensorial", "Schematic of thermal free nerve endings in skin": "Esquema de las terminaciones nerviosas libres sensibles a la temperatura en la piel", "Cool thermosensory afferent": "Fibra aferente termosensible al frío inocuo", "Cold nociceptive afferent": "Fibra aferente nociceptiva sensible al frío", "Warm thermosensory afferent": "Fibra aferente termosensible al calor inocuo", "Heat nociceptive afferent": "Fibra aferente nociceptiva sensible al calor", "Meissner corpuscle, rapidly adapting type I": "Corpúsculo de Meissner, adaptación rápida tipo I", "Merkel cell neurite complex, slowly adapting type I": "Complejo célula de Merkel–neurita, adaptación lenta tipo I", "Mechanical nociceptor free nerve endings": "Terminaciones nerviosas libres de nociceptores mecánicos", "SA II afferent, traditional Ruffini-like ending, anatomical identity uncertain": "Corpúsculos de Ruffini · SA II; identificación anatómica incierta", "Pacinian corpuscle, rapidly adapting type II": "Corpúsculo de Pacini, adaptación rápida tipo II", "Cutaneous mechanoreceptors — free nerve endings and tactile receptors": "Mecanorreceptores cutáneos: terminaciones nerviosas libres refinadas, v3", "Glabrous skin with Meissner corpuscle in a dermal papilla, Merkel cell-neurite complex at the basal epidermis, epidermal free nerve endings of mechanical nociceptors, a possible SA II deep ending, and a lamellated Pacinian corpuscle at the deep dermis/hypodermis. All five receptor groups are distinct SVG groups for use in an interactive teaching simulator.": "Piel glabra con un corpúsculo de Meissner superficial, un complejo célula de Merkel–neurita junto a la epidermis basal, terminaciones nerviosas libres de nociceptores mecánicos, una terminación profunda esquemática de aferentes SA II y un corpúsculo de Pacini laminado. Los cinco grupos se representan mediante elementos SVG independientes para su interacción en el simulador."};
+attributeSpanish["Project credits"] = "Créditos del proyecto";
+const mechNamesSpanish={"meissner": "Meissner · FA I", "merkel": "Complejo de Merkel · SA I", "pacinian": "Pacini · FA II", "sa2": "Corpúsculos de Ruffini · SA II", "noci": "Nociceptores mecánicos"};
+const mechInfoSpanish={"meissner": {"body": "Receptor primario superficial, con campo receptor pequeño y adaptación rápida. Es especialmente sensible a los cambios de deformación cutánea y a las vibraciones de baja frecuencia. Ante una presión constante responde principalmente al inicio y al final del estímulo. En humanos, su sensibilidad a la vibración es mayor a frecuencias bajas, particularmente en el intervalo de varias decenas de hercios.", "function": "Detección del movimiento y ajuste de la prensión", "life": "Las aferentes de Meissner contribuyen a detectar el contacto ligero y el movimiento de los objetos sobre la piel. Cuando un objeto empieza a deslizarse entre los dedos, la variación de la deformación cutánea proporciona información que permite ajustar rápidamente la fuerza de prensión y evitar que se caiga. También participan en la percepción de roces suaves y vibraciones de baja frecuencia.", "pressure": "Respuesta esperada: descargas breves al inicio y al final del estímulo.", "vibration": "Respuesta esperada: intensa actividad ante vibraciones de baja frecuencia."}, "merkel": {"body": "Receptor superficial, con campo receptor pequeño y adaptación lenta; receptor secundario según la clasificación utilizada en la asignatura. Proporciona información sobre la presión mantenida y las características espaciales del estímulo, como bordes y formas. Su fibra aferente continúa descargando durante la estimulación mecánica sostenida, aunque la frecuencia de descarga disminuye progresivamente.", "function": "Reconocimiento de formas y detalles finos", "life": "Las aferentes asociadas a las células de Merkel proporcionan información precisa sobre la localización y la distribución de las deformaciones cutáneas. Son especialmente importantes para identificar bordes, contornos, curvaturas y otros detalles espaciales finos. Cuando reconocemos un símbolo en relieve o exploramos con los dedos la forma de un objeto, estas aferentes contribuyen a la información que utiliza el encéfalo.", "pressure": "Respuesta esperada: descarga sostenida durante la presión, con adaptación gradual.", "vibration": "Respuesta esperada: mayor sensibilidad a cambios lentos que a vibraciones de frecuencia elevada.", "extra": "PIEZO2 interviene en la mecanotransducción del complejo célula de Merkel–neurita. Los potenciales de acción representados corresponden a la neurona sensitiva aferente, no a la célula de Merkel."}, "pacinian": {"body": "Receptor primario profundo, con campo receptor grande y adaptación rápida. Es muy sensible a los cambios mecánicos rápidos y a las vibraciones de alta frecuencia, con máxima sensibilidad aproximadamente en el intervalo de varios cientos de hercios. Ante una presión constante, la actividad aparece principalmente al inicio y al retirar el estímulo.", "function": "Detección de vibraciones y acontecimientos mecánicos transmitidos", "life": "Las aferentes de Pacini son extraordinariamente sensibles a los cambios mecánicos rápidos. Permiten detectar vibraciones de alta frecuencia que se transmiten por la piel, por ejemplo, al utilizar herramientas o deslizar objetos sobre superficies con textura. También pueden proporcionar información sobre acontecimientos mecánicos que se producen fuera del punto de contacto inmediato.", "pressure": "Respuesta esperada: ráfagas breves al inicio y al final de la presión.", "vibration": "Respuesta esperada: actividad intensa ante vibraciones de varios cientos de hercios."}, "sa2": {"body": "Receptor primario profundo, con campo receptor grande y adaptación lenta. Las aferentes SA II se asocian especialmente al estiramiento cutáneo, la configuración de la mano y la deformación mantenida. Pueden responder a la presión, pero esta no es la modalidad de estímulo más adecuada para demostrar su función. Los corpúsculos de Ruffini clásicos son poco frecuentes en la piel glabra de los dedos humanos; la estructura anatómica responsable de la actividad SA II no está establecida con certeza.", "function": "Estiramiento cutáneo y configuración de la mano", "life": "Las aferentes SA II responden especialmente al estiramiento cutáneo mantenido. Su actividad puede proporcionar información sobre los movimientos de los dedos, la configuración de la mano y la deformación de la piel durante la prensión. Esta información contribuye al control sensitivo de la postura de la mano y del agarre, aunque persiste incertidumbre sobre la identidad anatómica de las terminaciones SA II humanas.", "pressure": "Respuesta esperada: descarga sostenida moderada. El estiramiento cutáneo sería un estímulo más apropiado.", "vibration": "Respuesta esperada: actividad limitada ante la vibración."}, "noci": {"body": "Terminaciones nerviosas libres de umbral alto. El dolor mecánico depende de poblaciones heterogéneas de fibras nociceptivas mielínicas y amielínicas. Muchas fibras C sensibles a estímulos mecánicos son polimodales; algunas fibras C inicialmente insensibles a la estimulación mecánica pueden adquirir sensibilidad tras procesos de sensibilización.", "function": "Detección de fuerzas mecánicas potencialmente lesivas", "life": "Las fibras aferentes mecanonociceptivas de umbral alto contribuyen a detectar estímulos mecánicos potencialmente dañinos, como un pellizco intenso, una compresión fuerte o el contacto con un objeto punzante. Sus señales participan en las respuestas protectoras y en la percepción del dolor. A diferencia de los mecanorreceptores de umbral bajo, se reclutan preferentemente ante estímulos de gran intensidad, aunque los nociceptores mecánicos son fisiológicamente heterogéneos.", "pressure": "Respuesta esperada: reclutamiento con intensidades relativas elevadas.", "vibration": "Respuesta esperada: reclutamiento con intensidades relativas elevadas. No es un modelo calibrado de dolor por vibración."}};
+const thermalInfoSpanish={"cool": {"name": "Termorreceptores de frío (inocuo)", "molecules": "TRPM8: principal componente molecular bien establecido", "body": "El enfriamiento inocuo activa fibras aferentes sensibles al frío. A temperaturas adaptadas próximas a 32 °C, algunas presentan una baja frecuencia de descarga tónica. Su actividad aumenta durante el enfriamiento y puede alcanzar valores máximos en un intervalo amplio alrededor de 15–20 °C. Los enfriamientos rápidos provocan un aumento transitorio de la descarga, seguido de adaptación parcial.", "life": "Ejemplos cotidianos: percibir una corriente de aire fresco, detectar el contacto con una superficie fría o notar el cambio de temperatura al entrar en agua fresca. TRPC5 se ha propuesto como otro canal sensible al frío, pero su contribución a la sensibilidad térmica sigue sin estar bien establecida.", "prediction": "Modelo: respuesta creciente al enfriamiento hasta aproximadamente 15 °C, seguida de un descenso suave hacia 0 °C. Este descenso es ilustrativo y no necesariamente aparece en todas las aferentes humanas sensibles al frío."}, "coldpain": {"name": "Nociceptores del frío", "molecules": "Posible contribución de TRPM8 · papel de TRPA1 en la transducción del frío, debatido", "body": "El enfriamiento intenso puede reclutar fibras aferentes polimodales o fibras sensibles al frío de umbral alto. El frío nocivo no puede asociarse a un único canal molecular ni a una temperatura universal. En el modelo, el reclutamiento comienza de manera progresiva por debajo de aproximadamente 15–18 °C.", "life": "Ejemplo cotidiano: al tocar un objeto muy frío, la sensación puede pasar de frescor a una percepción desagradable, punzante o dolorosa. La función de TRPA1 en la nocicepción química está bien respaldada, pero su participación como sensor directo del frío en mamíferos continúa siendo controvertida.", "prediction": "Modelo: actividad muy escasa durante el frío moderado y aumento progresivo de la descarga durante el enfriamiento intenso."}, "warm": {"name": "Termorreceptores de calor (inocuo)", "molecules": "Fibras C sensibles al calor inocuo · TRPV3/TRPV4, especialmente en queratinocitos", "body": "Las fibras aferentes específicas de calor inocuo pueden presentar actividad tónica a temperaturas próximas a las habituales de la piel y aumentar su frecuencia de descarga durante el calentamiento. Con frecuencia muestran una respuesta transitoria durante una rampa térmica y una adaptación parcial cuando la temperatura se mantiene. En esta simulación se representa un intervalo amplio de respuesta preferente, aproximadamente entre 38 y 42 °C.", "life": "Ejemplos cotidianos: notar el calor de una taza templada o de una habitación cálida después de permanecer en un ambiente fresco. TRPV3 y TRPV4 se han estudiado especialmente en queratinocitos epidérmicos y pueden modular la señalización sensitiva, pero no equivalen a dos tipos independientes de aferentes humanas del calor.", "prediction": "Modelo: la descarga aumenta por encima de aproximadamente 30 °C, se satura cerca de 38–42 °C y desciende moderadamente cuando empiezan a activarse las aferentes nociceptivas del calor."}, "heatpain": {"name": "Nociceptores del calor", "molecules": "TRPV1: evidencia sólida · posible contribución de ANO1/TMEM16A", "body": "Los nociceptores sensibles al calor de umbral alto pueden reclutarse a temperaturas del orden de 40–45 °C, con importante variabilidad entre fibras y condiciones experimentales. El riesgo de lesión térmica y el dolor dependen, entre otros factores, de la duración de la exposición; no existe un interruptor universal de dolor a 45 °C.", "life": "Ejemplos cotidianos: tocar una superficie peligrosamente caliente o recibir un estímulo térmico capaz de provocar sensación de quemazón. La evidencia sobre TRPV1 en humanos es más sólida que la correspondiente a otros posibles sensores de calor. TRPV2 no se representa como un receptor humano independiente y establecido para temperaturas superiores a 50 °C.", "prediction": "Modelo: reclutamiento progresivo aproximadamente a partir de 42–45 °C, con aumento de la frecuencia de descarga hasta 55 °C. Las temperaturas son ilustrativas y no permiten predecir el dolor de una persona concreta."}};
+const dynamicWords={en:{"apply": "▶ Apply stimulus", "restart": "↻ Restart stimulus", "runAgain": "▶ Run again", "start": "▶ Start live recording", "pause": "Ⅱ Pause recording", "resume": "▶ Resume recording", "mReady": "Ready · baseline", "mBaseline": "○ Prestimulus baseline", "mOn": "● Stimulus ON", "mOff": "○ Stimulus released", "mComplete": "Recording complete", "tReady": "Ready · adapted at 32°C", "tLive": "● Live", "tPaused": "Ⅱ Paused — history retained", "cursor": "Cursor: ", "spikes": " spikes", "zeroSpikes": "0 spikes", "recorded": " s recorded", "lastSecond": " · last 1 s", "pressure": "Pressure", "vibration": "Vibration", "paperTitle": "Open peer-reviewed source "},es:{"apply": "▶ Aplicar estímulo", "restart": "↻ Reiniciar estímulo", "runAgain": "▶ Repetir registro", "start": "▶ Iniciar registro en directo", "pause": "Ⅱ Pausar registro", "resume": "▶ Reanudar registro", "mReady": "Preparado · línea de base", "mBaseline": "○ Línea de base previa al estímulo", "mOn": "● Estímulo aplicado", "mOff": "○ Estímulo retirado", "mComplete": "Registro finalizado", "tReady": "Preparado · adaptado a 32 °C", "tLive": "● En directo", "tPaused": "Ⅱ En pausa — se conserva el registro", "cursor": "Cursor temporal: ", "spikes": " PA", "zeroSpikes": "0 PA", "recorded": " s registrados", "lastSecond": " · último segundo", "pressure": "Presión", "vibration": "Vibración", "paperTitle": "Abrir fuente científica "}};
+const tr = key => dynamicWords[locale][key];
+const fmtDecimal=(num,digits=1)=>Number(num).toFixed(digits).replace('.',locale==='es'?',':'.');
+const fmtC=(num,digits=1)=>fmtDecimal(num,digits)+(locale==='es'?' °C':'°C');
+const mechName = id => locale==='es' ? mechNamesSpanish[id] : mechNames[id];
+const thermName = id => locale==='es' ? thermalInfoSpanish[id].name : thermalInfo[id].name;
+const dynamicTextIds=new Set(['m-run','m-status','m-clock','m-stimtext','m-cursorText','m-infoTitle','m-infoBody','m-infoFunctionTitle','m-infoFunction','m-infoPrediction','m-infoExtra','t-start','t-status','t-time','t-targetOut','t-targetBig','t-actualBig','t-cursorText','t-infoTitle','t-infoBody','t-infoMolecules','t-infoFunction','t-infoPrediction']);
+const originalStaticTexts=new Map();
+const originalAttributes=new Map();
+function localizeStatic(){
+  const walk=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+  let node;
+  while((node=walk.nextNode())){
+    const parent=node.parentElement;
+    if(!parent||parent.closest('script,style')||parent.closest('.rowrecord .record-label'))continue;
+    if(parent.id&&dynamicTextIds.has(parent.id))continue;
+    if(parent.closest('[id^="m-info"],[id^="t-info"]')&& !parent.closest('.scientific-bibliography'))continue;
+    if(!originalStaticTexts.has(node))originalStaticTexts.set(node,node.nodeValue);
+    const original=originalStaticTexts.get(node),trimmed=original.trim();
+    if(!trimmed || !Object.prototype.hasOwnProperty.call(staticSpanish,trimmed))continue;
+    const translated=locale==='es'?staticSpanish[trimmed]:trimmed;
+    node.nodeValue=original.replace(trimmed,translated);
+  }
+  for(const el of document.querySelectorAll('[aria-label],[title]')){
+    if(!originalAttributes.has(el)){
+      originalAttributes.set(el,{aria:el.getAttribute('aria-label'),title:el.getAttribute('title')});
+    }
+    const orig=originalAttributes.get(el);
+    for(const [attr,key] of [['aria-label','aria'],['title','title']]){
+      if(orig[key] && attributeSpanish[orig[key]])el.setAttribute(attr,locale==='es'?attributeSpanish[orig[key]]:orig[key]);
+    }
+  }
+}
+function mechStatusText(){
+ if(!mState.trial)return tr('mReady');
+ if(mState.running||mState.elapsed<mState.trial.duration+.5){
+   return mState.elapsed<0?tr('mBaseline'):mState.elapsed<mState.trial.duration?tr('mOn'):tr('mOff');
+ }
+ return tr('mComplete');
+}
+function thermalStatusText(){
+ if(tState.running)return tr('tLive')+' · '+fmtC(tState.actual);
+ return tState.elapsed>0?tr('tPaused'):tr('tReady');
+}
+function refreshLanguage(){
+ document.documentElement.lang=locale;
+ document.title=locale==='es'?'Simulador de receptores sensoriales cutáneos':'Cutaneous Sensory Receptors · Interactive Physiology Lab';
+ document.querySelectorAll('[data-locale]').forEach(btn=>{
+   const on=btn.dataset.locale===locale;
+   btn.classList.toggle('active',on);
+   btn.setAttribute('aria-pressed',String(on));
+ });
+ localizeStatic();
+ for(const id of mIds){const e=document.querySelector('[data-mechrow="'+id+'"] .record-label strong');if(e)e.textContent=mechName(id);const c=$('m-count-'+id);if(c)c.textContent=mState.spikes[id].filter(t=>t<=mState.elapsed).length+tr('spikes');}
+ for(const id of tIds){const e=document.querySelector('[data-thermrow="'+id+'"] .record-label strong');if(e)e.textContent=thermName(id);const c=$('t-count-'+id);if(c)c.textContent=tState.spikes[id].length+tr('spikes');}
+ updateMechInfo();
+ thermalSelect(tState.selected);
+ $('m-run').textContent=mState.running?tr('restart'):mState.trial?tr('runAgain'):tr('apply');
+ $('m-status').textContent=mechStatusText();
+ $('t-start').textContent=tState.running?tr('pause'):tState.elapsed>0?tr('resume'):tr('start');
+ $('t-status').textContent=thermalStatusText();
+ $('t-targetOut').textContent=tState.target+(locale==='es'?' °C':'°C');
+ $('t-targetBig').textContent=fmtC(tState.target);$('t-actualBig').textContent=fmtC(tState.actual);
+ $('m-durationOut').textContent=fmtDecimal(mState.settings.duration)+' s';
+ $('m-intensityOut').textContent=Math.round(mState.settings.intensity*100)+(locale==='es'?' %':'%');
+ const tempTitle=$('t-tempCanvas').closest('.rowrecord').querySelector('.record-label strong');
+ const tempLegend=$('t-tempCanvas').closest('.rowrecord').querySelector('.record-label small');
+ tempTitle.textContent=locale==='es'?'Temperatura cutánea':'Skin temperature';
+ tempLegend.textContent=locale==='es'?'Continua: piel · discontinua: valor seleccionado':'Solid: skin · dashed: slider';
+ quizRefreshLanguage();
+ if(active==='mech')drawMech();else drawThermal();
+}
+function setLanguage(next){if(next!=='es'&&next!=='en')return;locale=next;refreshLanguage();}
+document.querySelectorAll('[data-locale]').forEach(btn=>btn.addEventListener('click',()=>setLanguage(btn.dataset.locale)));
+
+const mState={settings:{mode:'pressure',intensity:.6,duration:4,frequency:30},trial:null,spikes:Object.fromEntries(mIds.map(id=>[id,[]])),selected:'meissner',elapsed:-.5,running:false,start:0,view:'live',window:null,cursor:null};
+const tState={target:32,actual:32,elapsed:0,running:false,selected:'cool',view:'live',window:null,cursor:null,temperature:[{t:0,actual:32,target:32}],spikes:Object.fromEntries(tIds.map(id=>[id,[]])),lastSpike:Object.fromEntries(tIds.map(id=>[id,-10])),adapt:Object.fromEntries(tIds.map(id=>[id,0])),transient:Object.fromEntries(tIds.map(id=>[id,0])),slope:0,acc:0,sampleAcc:0,randomState:987654321};
+let active='mech';
+function switchModule(which){active=which;for(const x of ['mech','therm']){$('module-'+x).hidden=x!==which;$('tab-'+x).classList.toggle('active',x===which);$('tab-'+x).setAttribute('aria-selected',String(x===which));}requestAnimationFrame(()=>{if(which==='mech')drawMech();else drawThermal();});}
+$('tab-mech').onclick=()=>switchModule('mech');$('tab-therm').onclick=()=>switchModule('therm');
+function seeded(seed){return ()=>{seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return(seed>>>0)/4294967296;};}
+function tuning(f,peak,width){const z=Math.log(f/peak)/width;return Math.exp(-.5*z*z);}
+function mechRate(id,t,p){const I=p.intensity,d=p.duration,f=p.frequency;if(t<0)return 0;const on=t<d,offT=t-d,off=offT>=0&&offT<.35;
+if(p.mode==='pressure'){
+if(id==='meissner')return I*((on?83*Math.exp(-t/.105):0)+(off?76*Math.exp(-offT/.085):0));
+if(id==='merkel')return on&&I>.12?(8+54*(I-.12)/.88)*(.55+.45*Math.exp(-t/1.4)):0;
+if(id==='pacinian')return I*((on?110*Math.exp(-t/.065):0)+(off?100*Math.exp(-offT/.06):0));
+if(id==='sa2')return on&&I>.25?(4+22*(I-.25)/.75)*(.55+.45*Math.exp(-t/2))*.7:0;
+if(id==='noci')return on&&I>.78&&t>.16?8+46*(I-.78)/.22:0;
+}else{
+if(id==='meissner')return I*((on?2+92*tuning(f,35,.78):0)+(off?52*Math.exp(-offT/.08):0));
+if(id==='merkel')return on&&I>.12?(8+47*I)*(.025+.975*tuning(f,12,.85)):0;
+if(id==='pacinian')return I*((on?2+108*tuning(f,240,.66):0)+(off?60*Math.exp(-offT/.065):0));
+if(id==='sa2')return on&&I>.25?(2+19*I)*(.2+.8*tuning(f,10,.95)):0;
+if(id==='noci')return on&&I>.78&&t>.16?8+32*(I-.78)/.22:0;
+}return 0;}
+function generateMech(p){const random=seeded(314159),res=Object.fromEntries(mIds.map(id=>[id,[]])),last=Object.fromEntries(mIds.map(id=>[id,-10]));for(let t=0;t<=p.duration+.5;t+=.002){for(const id of mIds){const r=mechRate(id,t,p);if(t-last[id]>=.008&&random()<1-Math.exp(-r*.002)){res[id].push(t);last[id]=t;}}}return res;}
+function updateMechInfo(){const id=mState.selected,d=(locale==='es'?mechInfoSpanish:mechInfo)[id];$('m-infoTitle').textContent=mechName(id);$('m-infoBody').textContent=d.body;$('m-infoFunctionTitle').textContent=d.function;$('m-infoFunction').textContent=d.life;$('m-infoPrediction').textContent=d[mState.settings.mode];$('m-infoExtra').textContent=d.extra||'';document.querySelectorAll('[data-mech]').forEach(e=>e.classList.toggle('selected',e.dataset.mech===id));document.querySelectorAll('[data-mechrow]').forEach(e=>e.classList.toggle('selected',e.dataset.mechrow===id));}
+function mechSelect(id){mState.selected=id;updateMechInfo();showRelevantSources('m-infoSources',mechSourceKeys[id]||[]);drawMech();}
+for(const e of document.querySelectorAll('[data-mech]')){e.onclick=()=>mechSelect(e.dataset.mech);e.onkeydown=ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();mechSelect(e.dataset.mech);}};}
+function setMechMode(mode){mState.settings.mode=mode;$('m-pressure').classList.toggle('active',mode==='pressure');$('m-vibration').classList.toggle('active',mode==='vibration');$('m-frequency').disabled=mode!=='vibration';updateMechInfo();drawMech();}
+$('m-pressure').onclick=()=>setMechMode('pressure');$('m-vibration').onclick=()=>setMechMode('vibration');
+$('m-intensity').oninput=e=>{mState.settings.intensity=+e.target.value/100;$('m-intensityOut').textContent=e.target.value+(locale==='es'?' %':'%');drawMech();};
+$('m-duration').oninput=e=>{mState.settings.duration=+e.target.value;$('m-durationOut').textContent=fmtDecimal(mState.settings.duration)+' s';drawMech();};
+$('m-frequency').oninput=e=>{mState.settings.frequency=+e.target.value;$('m-frequencyOut').textContent=e.target.value+' Hz';drawMech();};
+function resetMech(){Object.assign(mState,{trial:null,spikes:Object.fromEntries(mIds.map(id=>[id,[]])),elapsed:-.5,running:false,view:'live',window:null,cursor:null});$('m-run').textContent=tr('apply');$('m-status').textContent=tr('mReady');drawMech();}
+function runMech(now){mState.trial={...mState.settings};mState.spikes=generateMech(mState.trial);mState.elapsed=-.5;mState.start=performance.now();mState.running=true;mState.view='live';mState.window=null;mState.cursor=null;$('m-run').textContent=tr('restart');drawMech();}
+$('m-reset').onclick=resetMech;$('m-run').onclick=runMech;
+function mechDomain(){const p=mState.trial||mState.settings;return[-.5,p.duration+.5];}
+function mechWindow(){if(mState.view==='manual'&&mState.window)return mState.window;const[a,b]=mechDomain(),span=Math.min(2,b-a),end=Math.min(b,Math.max(a+span,mState.elapsed+.03));return[end-span,end];}
+function clampSpan(start,span,domain){const[a,b]=domain;span=clamp(span,.06,b-a);return[clamp(start,a,b-span),clamp(start,a,b-span)+span];}
+function updateMechView(){const[a,b]=mechDomain();$('m-live').classList.toggle('active',mState.view==='live');$('m-full').classList.toggle('active',mState.view==='manual'&&mState.window&&Math.abs(mState.window[0]-a)<1e-5&&Math.abs(mState.window[1]-b)<1e-5);}
+$('m-live').onclick=()=>{mState.view='live';mState.window=null;mState.cursor=null;drawMech();};$('m-full').onclick=()=>{mState.view='manual';mState.window=mechDomain();mState.cursor=null;drawMech();};
+function mechZoom(factor){const[a,b]=mechWindow(),span=b-a,[min,max]=mechDomain(),next=clamp(span*factor,.06,max-min),focus=mState.cursor!==null&&mState.cursor>=a&&mState.cursor<=b?mState.cursor:(a+b)/2;mState.window=clampSpan(focus-(focus-a)/span*next,next,[min,max]);mState.view='manual';drawMech();}
+$('m-plus').onclick=()=>mechZoom(1/1.7);$('m-minus').onclick=()=>mechZoom(1.7);
+// Four overlapping, illustrative static temperature tuning curves.
+const knots={cool:[[0,12],[5,18],[10,23],[15,25],[20,18],[25,11],[30,3],[32,1],[35,0],[55,0]],coldpain:[[0,35],[5,28],[10,17],[15,3],[18,0],[55,0]],warm:[[0,0],[30,0],[32,3],[35,10],[38,17],[40,20],[42,20],[45,16],[50,10],[55,5]],heatpain:[[0,0],[41,0],[42,0],[43,1],[45,9],[47,16],[50,27],[55,38]]};
+function interp(table,temp){if(temp<=table[0][0])return table[0][1];for(let i=1;i<table.length;i++){const[a,ya]=table[i-1],[b,yb]=table[i];if(temp<=b)return ya+(temp-a)/(b-a)*(yb-ya);}return table[table.length-1][1];}
+function staticThermalRate(id,temp){return interp(knots[id],temp);}
+function thermalReset(){tState.target=32;tState.actual=32;tState.elapsed=0;tState.running=false;tState.temperature=[{t:0,actual:32,target:32}];tState.spikes=Object.fromEntries(tIds.map(id=>[id,[]]));tState.lastSpike=Object.fromEntries(tIds.map(id=>[id,-10]));tState.adapt=Object.fromEntries(tIds.map(id=>[id,staticThermalRate(id,32)*(id==='cool'||id==='warm'?.20:.08)]));tState.transient=Object.fromEntries(tIds.map(id=>[id,0]));tState.slope=0;tState.acc=0;tState.sampleAcc=0;tState.randomState=987654321;tState.view='live';tState.window=null;tState.cursor=null;$('t-slider').value='32';$('t-targetOut').textContent='32°C';$('t-targetBig').textContent='32.0°C';$('t-actualBig').textContent='32.0°C';$('t-start').textContent=tr('start');$('t-status').textContent=tr('tReady');drawThermal();}
+function thermalRandom(){let x=tState.randomState;x^=x<<13;x^=x>>>17;x^=x<<5;tState.randomState=x;return(x>>>0)/4294967296;}
+function thermalStep(dt){const prev=tState.actual;const gap=tState.target-prev;const speed=clamp(gap*3.2,-8,8);tState.actual=clamp(prev+speed*dt,0,55);const derivative=(tState.actual-prev)/dt;tState.slope+=(derivative-tState.slope)*Math.min(1,dt/.17);tState.elapsed+=dt;
+for(const id of tIds){const base=staticThermalRate(id,tState.actual),isInnocent=id==='cool'||id==='warm',adaptFraction=isInnocent?.24:.10;const aTarget=base*adaptFraction;tState.adapt[id]+=(aTarget-tState.adapt[id])*Math.min(1,dt/(isInnocent?4:6));const signed=id==='cool'||id==='coldpain'?-tState.slope:tState.slope;const gain=id==='cool'?1.7:id==='warm'?1.5:.30;const phasic=Math.max(0,signed)*gain;tState.transient[id]+=(phasic-tState.transient[id])*Math.min(1,dt/.15);const rate=clamp(base-tState.adapt[id]+tState.transient[id],0,65);
+if(tState.elapsed-tState.lastSpike[id]>.009&&thermalRandom()<1-Math.exp(-rate*dt)){tState.spikes[id].push(tState.elapsed);tState.lastSpike[id]=tState.elapsed;}}
+tState.sampleAcc+=dt;if(tState.sampleAcc>=.04){tState.temperature.push({t:tState.elapsed,actual:tState.actual,target:tState.target});tState.sampleAcc=0;}
+}
+$('t-slider').oninput=e=>{tState.target=+e.target.value;$('t-targetOut').textContent=tState.target+(locale==='es'?' °C':'°C');$('t-targetBig').textContent=fmtC(tState.target);if(!tState.running){/* The target is ready; temperature evolves only once acquisition starts. */}drawThermal();};
+$('t-start').onclick=()=>{tState.running=!tState.running;$('t-start').textContent=tState.running?tr('pause'):tr('resume');$('t-status').textContent=thermalStatusText();};
+$('t-reset').onclick=thermalReset;
+function thermalDomain(){return[0,Math.max(12,tState.elapsed)];}
+function thermalWindow(){if(tState.view==='manual'&&tState.window)return tState.window;const span=12,end=Math.max(span,tState.elapsed),start=Math.max(0,end-span);return[start,start+span];}
+function thermalUpdateView(){const[a,b]=thermalDomain();$('t-live').classList.toggle('active',tState.view==='live');$('t-full').classList.toggle('active',tState.view==='manual'&&tState.window&&Math.abs(tState.window[0]-a)<.001&&Math.abs(tState.window[1]-b)<.001);}
+$('t-live').onclick=()=>{tState.view='live';tState.window=null;tState.cursor=null;drawThermal();};$('t-full').onclick=()=>{tState.view='manual';tState.window=thermalDomain();tState.cursor=null;drawThermal();};
+function thermalZoom(factor){const[a,b]=thermalWindow(),span=b-a,[min,max]=thermalDomain(),next=clamp(span*factor,.1,max-min),focus=tState.cursor!==null&&tState.cursor>=a&&tState.cursor<=b?tState.cursor:(a+b)/2;tState.window=clampSpan(focus-(focus-a)/span*next,next,[min,max]);tState.view='manual';drawThermal();}
+$('t-plus').onclick=()=>thermalZoom(1/1.7);$('t-minus').onclick=()=>thermalZoom(1.7);
+function thermalSelect(id){tState.selected=id;const d=(locale==='es'?thermalInfoSpanish:thermalInfo)[id];$('t-infoTitle').textContent=d.name;$('t-infoBody').textContent=d.body;$('t-infoMolecules').textContent=d.molecules;$('t-infoFunction').textContent=d.life;$('t-infoPrediction').textContent=d.prediction;showRelevantSources('t-infoSources',thermalSourceKeys[id]||[]);document.querySelectorAll('[data-therm]').forEach(e=>e.classList.toggle('selected',e.dataset.therm===id));document.querySelectorAll('[data-thermrow]').forEach(e=>e.classList.toggle('selected',e.dataset.thermrow===id));drawThermal();}
+for(const e of document.querySelectorAll('[data-therm]')){e.onclick=()=>thermalSelect(e.dataset.therm);e.onkeydown=ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();thermalSelect(e.dataset.therm);}};}
+function buildRow(parent,prefix,id,name,sub,select){const row=document.createElement('div');row.className='rowrecord';row.dataset[prefix==='m'?'mechrow':'thermrow']=id;const text=document.createElement('div');text.className='record-label';const title=document.createElement('strong');title.textContent=name;const small=document.createElement('small');small.id=prefix+'-count-'+id;small.textContent=sub;const rate=document.createElement('div');rate.className='rate';rate.id=prefix+'-rate-'+id;rate.textContent='0 Hz';text.append(title,small,rate);const c=document.createElement('canvas');c.className='plot';c.id=prefix+'-trace-'+id;row.append(text,c);$(parent).appendChild(row);row.onclick=e=>{if(e.target!==c)select(id);};attachNav(c,prefix,id);return row;}
+for(const id of mIds)buildRow('m-rows','m',id,mechName(id),tr('zeroSpikes'),mechSelect);
+for(const id of tIds)buildRow('t-rows','t',id,thermName(id),tr('zeroSpikes'),thermalSelect);
+// Synchronized pan and cursor selection, even while a separate thermal stream continues recording.
+function attachNav(canvas,prefix,id=null){let drag=null;canvas.onpointerdown=e=>{if(e.pointerType==='mouse'&&e.button!==0)return;e.preventDefault();if(id){if(prefix==='m')mechSelect(id);else thermalSelect(id);}const state=prefix==='m'?mState:tState;const win=prefix==='m'?mechWindow():thermalWindow();state.view='manual';state.window=[...win];drag={x:e.clientX,start:win[0],span:win[1]-win[0],moved:false};canvas.setPointerCapture(e.pointerId);canvas.classList.add('dragging');};canvas.onpointermove=e=>{if(!drag)return;const dx=e.clientX-drag.x;if(Math.abs(dx)>3)drag.moved=true;if(drag.moved){const state=prefix==='m'?mState:tState,dom=prefix==='m'?mechDomain():thermalDomain();state.window=clampSpan(drag.start-dx/Math.max(1,canvas.clientWidth-45)*drag.span,drag.span,dom);if(prefix==='m')drawMech();else drawThermal();}};canvas.onpointerup=e=>{if(!drag)return;const state=prefix==='m'?mState:tState;if(!drag.moved){const rect=canvas.getBoundingClientRect(),frac=clamp((e.clientX-rect.left-35)/Math.max(1,rect.width-45),0,1);state.cursor=state.window[0]+frac*(state.window[1]-state.window[0]);}drag=null;canvas.classList.remove('dragging');if(prefix==='m')drawMech();else drawThermal();};canvas.onpointercancel=()=>{drag=null;canvas.classList.remove('dragging');};}
+attachNav($('m-stimulus'),'m');attachNav($('t-tempCanvas'),'t');
+function canvasCtx(canvas,h=92){const width=Math.max(170,canvas.getBoundingClientRect().width),dpr=Math.min(2,window.devicePixelRatio||1),pw=Math.round(width*dpr),ph=Math.round(h*dpr);if(canvas.width!==pw||canvas.height!==ph){canvas.width=pw;canvas.height=ph;}const ctx=canvas.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,width,h);return{ctx,width,h};}
+function axes(canvas,window,voltage=false){const{ctx,width,h}=canvasCtx(canvas),[a,b]=window,L=35,R=width-10,T=7,B=h-20,x=t=>L+(t-a)/(b-a)*(R-L),y=v=>T+(35-v)/125*(B-T);const span=b-a,step=span<=.4?.1:span<=1.5?.25:span<=3?.5:span<=8?1:span<=18?2:span<=45?5:span<=150?20:60;ctx.font='10px system-ui';ctx.lineWidth=.7;ctx.textBaseline='alphabetic';ctx.fillStyle='#93b0b9';ctx.strokeStyle='#23434e';for(let t=Math.ceil((a-1e-9)/step)*step;t<=b+1e-7;t+=step){const px=x(t);ctx.beginPath();ctx.moveTo(px,T);ctx.lineTo(px,B);ctx.stroke();ctx.fillText((Math.abs(t)<.001?0:t).toFixed(span<=.4?2:span<=3?1:0)+'s',px+2,h-5);}if(voltage){ctx.fillText('+30',3,y(30)+3);ctx.fillText('−55',3,y(-55)+3);ctx.fillText('−70',3,y(-70)+3);ctx.strokeStyle='#a09384';ctx.setLineDash([3,3]);ctx.beginPath();ctx.moveTo(L,y(-55));ctx.lineTo(R,y(-55));ctx.stroke();ctx.setLineDash([]);}return{ctx,x,y,L,R,T,B,a,b};}
+function clipAxes(A,fn){A.ctx.save();A.ctx.beginPath();A.ctx.rect(A.L,A.T,A.R-A.L,A.B-A.T);A.ctx.clip();fn();A.ctx.restore();}
+function markers(A,prefix){const s=prefix==='m'?mState:tState,p=prefix==='m'?(s.trial||s.settings):null;const markings=prefix==='m'?[[0,'#e1c98f'],[p.duration,'#de9a87']]:[];for(const[t,c]of markings){if(t>=A.a&&t<=A.b){A.ctx.strokeStyle=c;A.ctx.lineWidth=1;A.ctx.setLineDash([3,4]);A.ctx.beginPath();A.ctx.moveTo(A.x(t),A.T);A.ctx.lineTo(A.x(t),A.B);A.ctx.stroke();A.ctx.setLineDash([]);}}if(s.cursor!==null&&s.cursor>=A.a&&s.cursor<=A.b){A.ctx.strokeStyle='#d7a6ff';A.ctx.lineWidth=1.4;A.ctx.beginPath();A.ctx.moveTo(A.x(s.cursor),A.T);A.ctx.lineTo(A.x(s.cursor),A.B);A.ctx.stroke();}if(s.running&&s.elapsed>=A.a&&s.elapsed<=A.b){A.ctx.strokeStyle='#eeae78';A.ctx.lineWidth=1.2;A.ctx.beginPath();A.ctx.moveTo(A.x(s.elapsed),A.T);A.ctx.lineTo(A.x(s.elapsed),A.B);A.ctx.stroke();}}
+function shadeFuture(A,elapsed){if(elapsed>=A.b)return;const x=clamp(A.x(elapsed),A.L,A.R);A.ctx.fillStyle='rgba(3,14,21,.75)';A.ctx.fillRect(x,A.T,A.R-x,A.B-A.T);}
+// All spikes are illustrated with the same afferent AP waveform.
+const AP=[[-.002,-70],[-.0006,-55],[0,30],[.001,-8],[.002,-80],[.004,-70]];
+function spikesLine(A,spikes,maxRecorded,color){const{ctx,x,y,a,b}=A;clipAxes(A,()=>{ctx.strokeStyle=color;ctx.lineWidth=1.65;ctx.lineJoin='round';ctx.beginPath();ctx.moveTo(x(a),y(-70));let last=a;for(const s of spikes){if(s>maxRecorded+.003||s+.004<a||s-.002>b)continue;const start=s+AP[0][0];if(start>last)ctx.lineTo(x(start),y(-70));for(const[dt,v]of AP)ctx.lineTo(x(s+dt),y(v));last=s+.004;}ctx.lineTo(x(Math.min(b,maxRecorded)),y(-70));ctx.stroke();});}
+function drawMech(){if(active!=='mech')return;const s=mState,p=s.trial||s.settings,win=mechWindow();updateMechView();$('m-clock').textContent=fmtDecimal(s.elapsed,2)+' / '+fmtDecimal(p.duration,2)+' s';$('m-progress').style.width=clamp((s.elapsed+.5)/(p.duration+1)*100,0,100)+'%';$('m-cursorText').textContent=tr('cursor')+(s.cursor===null?'—':s.cursor.toFixed(3)+' s');$('m-stimtext').textContent=p.mode==='pressure'?tr('pressure')+' · '+Math.round(p.intensity*100)+(locale==='es'?' %':'%'):tr('vibration')+' · '+p.frequency+' Hz · '+Math.round(p.intensity*100)+(locale==='es'?' %':'%');
+const A=axes($('m-stimulus'),win),{ctx,x,L,R,T,B,a,b}=A,base=B-5,level=base-p.intensity*(B-T-10);clipAxes(A,()=>{ctx.strokeStyle='#69e6da';ctx.lineWidth=2;if(p.mode==='pressure'){ctx.fillStyle='rgba(105,230,218,.16)';ctx.fillRect(x(0),level,x(p.duration)-x(0),base-level);ctx.beginPath();ctx.moveTo(x(-.5),base);ctx.lineTo(x(0),base);ctx.lineTo(x(0),level);ctx.lineTo(x(p.duration),level);ctx.lineTo(x(p.duration),base);ctx.lineTo(x(p.duration+.5),base);ctx.stroke();}else{ctx.beginPath();ctx.moveTo(x(-.5),base);ctx.lineTo(x(0),base);ctx.moveTo(x(p.duration),base);ctx.lineTo(x(p.duration+.5),base);ctx.stroke();const start=Math.max(a,0),end=Math.min(b,p.duration),mid=(T+base)/2,half=p.intensity*(B-T-10)*.42;if(end>start&&half>0){const cycles=p.frequency*(end-start);if(cycles<110){const n=Math.min(7000,Math.max(200,Math.ceil(cycles*18)));ctx.beginPath();ctx.moveTo(x(start),base);for(let i=0;i<=n;i++){const t=start+(end-start)*i/n;ctx.lineTo(x(t),mid-half*Math.sin(2*Math.PI*p.frequency*t));}ctx.lineTo(x(end),base);ctx.stroke();}else{ctx.fillStyle='rgba(105,230,218,.18)';ctx.fillRect(x(start),mid-half,x(end)-x(start),half*2);ctx.strokeStyle='#69e6da';ctx.beginPath();ctx.moveTo(x(start),mid-half);ctx.lineTo(x(end),mid-half);ctx.moveTo(x(start),mid+half);ctx.lineTo(x(end),mid+half);ctx.stroke();}}}});shadeFuture(A,s.elapsed);markers(A,'m');
+for(const id of mIds){const ev=s.spikes[id],shown=ev.filter(t=>t<=s.elapsed),recent=shown.filter(t=>t>s.elapsed-.5),rate=s.elapsed<=0?0:Math.round(recent.length/Math.min(.5,Math.max(.1,s.elapsed)));$('m-count-'+id).textContent=shown.length+tr('spikes');$('m-rate-'+id).textContent=rate+' Hz';const halo=document.querySelector('[data-mech="'+id+'"] .halo');if(halo)halo.style.opacity=Math.min(.7,rate/90);const G=axes($('m-trace-'+id),win,true);spikesLine(G,ev,s.elapsed,quiz.active&&!quiz.m.revealed?'#b8d3dd':(id===s.selected?'#a2fff4':'#60cad0'));shadeFuture(G,s.elapsed);markers(G,'m');}}
+function drawThermal(){if(active!=='therm')return;const s=tState,win=thermalWindow();thermalUpdateView();$('t-targetBig').textContent=s.target.toFixed(1)+'°C';$('t-actualBig').textContent=fmtC(s.actual);$('t-time').textContent=s.elapsed.toFixed(1).replace('.',locale==='es'?',':'.')+tr('recorded');$('t-cursorText').textContent=tr('cursor')+(s.cursor===null?'—':s.cursor.toFixed(2)+' s');
+const A=axes($('t-tempCanvas'),win),{ctx,x,L,R,T,B,a,b}=A,yTemp=temp=>B-(temp/55)*(B-T);clipAxes(A,()=>{for(const [field,color,dash]of [['target','#a6b6bf',[4,3]],['actual','#6ce1cf',[]]]){ctx.strokeStyle=color;ctx.lineWidth=field==='actual'?2:1.4;ctx.setLineDash(dash);ctx.beginPath();let moved=false;for(const sample of s.temperature){if(sample.t<a-.1||sample.t>b+.1)continue;const px=x(sample.t),py=yTemp(sample[field]);if(!moved){ctx.moveTo(px,py);moved=true;}else ctx.lineTo(px,py);}if(moved&&s.elapsed>=a&&s.elapsed<=b)ctx.lineTo(x(s.elapsed),yTemp(field==='target'?s.target:s.actual));if(moved)ctx.stroke();ctx.setLineDash([]);}});shadeFuture(A,s.elapsed);markers(A,'t');ctx.fillStyle='#9bb6bd';ctx.font='9px system-ui';ctx.fillText('55°',2,T+9);ctx.fillText('32°',2,yTemp(32)+3);ctx.fillText('0°',7,B+2);
+for(const id of tIds){const ev=s.spikes[id],recent=ev.filter(t=>t>s.elapsed-1&&t<=s.elapsed),rate=s.elapsed<=0?0:recent.length;$('t-count-'+id).textContent=ev.length+tr('spikes');$('t-rate-'+id).textContent=rate+' Hz'+tr('lastSecond');const halo=document.querySelector('[data-therm="'+id+'"] .halo');if(halo)halo.style.opacity=clamp(rate/34,0,.5);const G=axes($('t-trace-'+id),win,true);spikesLine(G,ev,s.elapsed,quiz.active&&!quiz.t.revealed?'#b8d3dd':tColors[id]);shadeFuture(G,s.elapsed);markers(G,'t');}
+drawCurves();}
+function drawCurves(){if(active!=='therm')return;const c=$('t-curves'),{ctx,width,h}=canvasCtx(c,185),L=33,R=width-10,T=8,B=h-25,x=t=>L+t/55*(R-L),y=rate=>B-rate/43*(B-T);ctx.font='10px system-ui';ctx.fillStyle='#9ab7c0';ctx.strokeStyle='#284956';ctx.lineWidth=.7;for(const temp of [0,10,20,30,40,50,55]){const xx=x(temp);ctx.beginPath();ctx.moveTo(xx,T);ctx.lineTo(xx,B);ctx.stroke();ctx.fillText(temp+'°',xx-4,h-7);}for(const rate of [0,10,20,30,40]){const yy=y(rate);ctx.beginPath();ctx.moveTo(L,yy);ctx.lineTo(R,yy);ctx.stroke();ctx.fillText(String(rate),6,yy+4);}for(const id of tIds){ctx.lineWidth=id===tState.selected?2.8:1.3;ctx.globalAlpha=id===tState.selected?1:.52;ctx.strokeStyle=tColors[id];ctx.beginPath();for(let t=0;t<=55;t+=.25){const px=x(t),py=y(staticThermalRate(id,t));if(t===0)ctx.moveTo(px,py);else ctx.lineTo(px,py);}ctx.stroke();}ctx.globalAlpha=1;ctx.strokeStyle='#dceaf1';ctx.setLineDash([3,3]);ctx.beginPath();ctx.moveTo(x(tState.actual),T);ctx.lineTo(x(tState.actual),B);ctx.stroke();ctx.setLineDash([]);}
+function animate(now){if(mState.running&&mState.trial){mState.elapsed=Math.min(mState.trial.duration+.5,-.5+(now-mState.start)/1000);$('m-status').textContent=mState.elapsed<0?tr('mBaseline'):mState.elapsed<mState.trial.duration?tr('mOn'):tr('mOff');if(mState.elapsed>=mState.trial.duration+.5){mState.running=false;$('m-status').textContent=tr('mComplete');$('m-run').textContent=tr('runAgain');}}
+if(animate.last===undefined)animate.last=now;const frameDt=Math.min(.08,Math.max(0,(now-animate.last)/1000));animate.last=now;if(tState.running){tState.acc+=frameDt;let steps=0;while(tState.acc>=.01&&steps<10){thermalStep(.01);tState.acc-=.01;steps++;}if(steps===10)tState.acc=0;$('t-status').textContent=tr('tLive')+' · '+fmtC(tState.actual);}
+if(animate.lastPaint===undefined||now-animate.lastPaint>=35){if(active==='mech')drawMech();else drawThermal();animate.lastPaint=now;}requestAnimationFrame(animate);}
+window.addEventListener('resize',()=>{if(active==='mech')drawMech();else drawThermal();});
+
+// -------------------------------------------------------
+// PREDICTION MODE — anonymous recording identification.
+// This layer does not modify generateMech, thermalStep,
+// electrode traces, stimulus parameters, or acquisition.
+// -------------------------------------------------------
+const quiz={active:false,m:{order:[],guess:{},checked:false,revealed:false,message:null},t:{order:[],guess:{},checked:false,revealed:false,message:null}};
+const quizText={
+ en:{explore:'Explore',predict:'Prediction mode',title:'Identify the afferents',instructions:'Apply different stimuli, compare the anonymous recordings, and assign one identity to each unit. Every identity is used once.',hidden:'Anatomical clues are hidden',hiddenNote:'You can inspect the endings after revealing the solutions.',check:'Check predictions',reveal:'Reveal answers',newChallenge:'New challenge',unit:'Unit',choose:'Choose a receptor…',initial:'Choose an identity for each unit.',incomplete:'Assign an identity to every unit before checking.',duplicate:'Each receptor identity can only be assigned once.',score:(a,b)=>`${a} of ${b} correct. You can revise the answers or reveal the solutions.`,correct:'✓ Correct',incorrect:'✕ Try again',revealed:'Solutions revealed. Start a new challenge to try again.',unitLabel:'Identity of',answers:'Solution:',
+ },
+ es:{explore:'Explorar',predict:'Modo predicción',title:'Identifica las fibras aferentes',instructions:'Aplica distintos estímulos, compara los registros anónimos y asigna una identidad a cada unidad. Cada identidad se utiliza una sola vez.',hidden:'Se han ocultado las pistas anatómicas',hiddenNote:'Podrás consultar las terminaciones tras revelar las soluciones.',check:'Comprobar respuestas',reveal:'Mostrar soluciones',newChallenge:'Nuevo ejercicio',unit:'Unidad',choose:'Selecciona un receptor…',initial:'Asigna una identidad a cada unidad.',incomplete:'Identifica todas las unidades antes de comprobar.',duplicate:'Cada receptor solo puede asignarse una vez.',score:(a,b)=>`${a} de ${b} correctas. Puedes revisar las respuestas o consultar las soluciones.`,correct:'✓ Correcto',incorrect:'✕ Inténtalo de nuevo',revealed:'Soluciones mostradas. Inicia un nuevo ejercicio para volver a intentarlo.',unitLabel:'Identidad de',answers:'Solución:',
+ }
+};
+const qText=key=>quizText[locale][key];
+const quizLetters=['A','B','C','D','E'];
+function quizPrefixIds(prefix){return prefix==='m'?mIds:tIds;}
+function quizDisplayName(prefix,id){return prefix==='m'?mechName(id):thermName(id);}
+function quizShuffle(previous,ids){
+  const result=[...ids];
+  for(let i=result.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[result[i],result[j]]=[result[j],result[i]];}
+  if(previous&&previous.length&&result.every((v,i)=>v===previous[i]))[result[0],result[1]]=[result[1],result[0]];
+  return result;
+}
+function quizStart(prefix){
+ const q=quiz[prefix],ids=quizPrefixIds(prefix);
+ q.order=quizShuffle(q.order,ids);q.guess={};q.checked=false;q.revealed=false;q.message=null;
+ quizSync(prefix);
+}
+function quizStatus(prefix){
+ const q=quiz[prefix];if(!q.message)return qText('initial');
+ if(q.message.type==='score')return qText('score')(q.message.correct,q.message.total);
+ return qText(q.message.type);
+}
+function quizSync(prefix){
+ const module=$(prefix==='m'?'module-mech':'module-therm');
+ const q=quiz[prefix],ids=quizPrefixIds(prefix),container=$(prefix+'-rows');
+ const activeQuiz=quiz.active;
+ module.classList.toggle('pred-active',activeQuiz);
+ module.classList.toggle('pred-revealed',activeQuiz&&q.revealed);
+ const ordered=(activeQuiz&&q.order.length?q.order:ids);
+ for(const [i,id] of ordered.entries()){
+  const row=container.querySelector('[data-'+(prefix==='m'?'mechrow':'thermrow')+'="'+id+'"]');
+  if(!row)continue;
+  container.appendChild(row);
+  const label=row.querySelector('.record-label'),title=label.querySelector('strong');
+  const unit=qText('unit')+' '+quizLetters[i];
+  title.textContent=activeQuiz?(q.revealed?unit+' — '+quizDisplayName(prefix,id):unit):quizDisplayName(prefix,id);
+  let wrap=label.querySelector('.quiz-select-wrap');
+  if(!wrap){
+   wrap=document.createElement('div');wrap.className='quiz-select-wrap';
+   const sel=document.createElement('select');sel.className='quiz-select';sel.setAttribute('autocomplete','off');
+   sel.addEventListener('click',e=>e.stopPropagation());
+   sel.addEventListener('pointerdown',e=>e.stopPropagation());
+   sel.addEventListener('change',()=>{
+    q.guess[id]=sel.value;q.checked=false;q.message=null;
+    quizSync(prefix);
+   });
+   wrap.appendChild(sel);label.appendChild(wrap);
+   const mark=document.createElement('div');mark.className='quiz-mark';label.appendChild(mark);
+  }
+  const sel=wrap.querySelector('select'),oldValue=q.guess[id]||'';
+  sel.replaceChildren();
+  const initial=document.createElement('option');initial.value='';initial.textContent=qText('choose');sel.appendChild(initial);
+  for(const optionId of ids){const opt=document.createElement('option');opt.value=optionId;opt.textContent=quizDisplayName(prefix,optionId);sel.appendChild(opt);}
+  sel.value=oldValue;
+  sel.setAttribute('aria-label',qText('unitLabel')+' '+unit);
+  sel.disabled=q.revealed;
+  const mark=label.querySelector('.quiz-mark');
+  mark.className='quiz-mark';mark.textContent='';
+  row.classList.remove('quiz-correct','quiz-incorrect');
+  if(activeQuiz&&q.checked&&!q.revealed){
+   const correct=q.guess[id]===id;
+   mark.classList.add('shown',correct?'ok':'bad');mark.textContent=qText(correct?'correct':'incorrect');
+   row.classList.add(correct?'quiz-correct':'quiz-incorrect');
+  }
+ }
+ const panel=module.querySelector('.quiz-panel');
+ panel.querySelector('.quiz-title').textContent=qText('title');
+ panel.querySelector('.quiz-instructions').textContent=qText('instructions');
+ module.querySelector('.quiz-hidden-head').textContent=qText('hidden');
+ module.querySelector('.quiz-hidden-explain').textContent=qText('hiddenNote');
+ panel.querySelector('.quiz-check').textContent=qText('check');
+ panel.querySelector('.quiz-check').disabled=q.revealed;
+ panel.querySelector('.quiz-reveal').textContent=qText('reveal');
+ panel.querySelector('.quiz-reveal').disabled=q.revealed;
+ panel.querySelector('.quiz-new').textContent=qText('newChallenge');
+ panel.querySelector('.quiz-new').title=locale==='es'?'Reinicia el registro y cambia el orden de las unidades':'Reset the recording and shuffle the units';
+ panel.querySelector('.quiz-status').textContent=quizStatus(prefix);
+}
+function quizCheck(prefix){
+ const q=quiz[prefix],ids=quizPrefixIds(prefix),chosen=ids.map(id=>q.guess[id]||'');
+ if(chosen.some(v=>!v)){q.checked=false;q.message={type:'incomplete'};}
+ else if(new Set(chosen).size!==ids.length){q.checked=false;q.message={type:'duplicate'};}
+ else{q.checked=true;q.message={type:'score',correct:ids.filter(id=>q.guess[id]===id).length,total:ids.length};}
+ quizSync(prefix);
+}
+function quizReveal(prefix){
+ quiz[prefix].revealed=true;quiz[prefix].checked=false;quiz[prefix].message={type:'revealed'};
+ quizSync(prefix);
+ if(prefix==='m')drawMech();else drawThermal();
+}
+function changeStudyMode(next){
+ quiz.active=next==='predict';
+ document.body.classList.toggle('study-predict',quiz.active);
+ $('study-explore').classList.toggle('active',!quiz.active);
+ $('study-predict').classList.toggle('active',quiz.active);
+ $('study-explore').setAttribute('aria-pressed',String(!quiz.active));
+ $('study-predict').setAttribute('aria-pressed',String(quiz.active));
+ if(quiz.active){quizStart('m');quizStart('t');}
+ else{quizSync('m');quizSync('t');}
+ if(active==='mech')drawMech();else drawThermal();
+}
+$('study-explore').onclick=()=>changeStudyMode('explore');
+$('study-predict').onclick=()=>changeStudyMode('predict');
+for(const prefix of ['m','t']){
+ const module=$(prefix==='m'?'module-mech':'module-therm');
+ module.querySelector('.quiz-check').onclick=()=>quizCheck(prefix);
+ module.querySelector('.quiz-reveal').onclick=()=>quizReveal(prefix);
+ module.querySelector('.quiz-new').onclick=()=>{quizStart(prefix);if(prefix==='m')resetMech();else thermalReset();};
+}
+function quizRefreshLanguage(){
+ $('study-explore').textContent=qText('explore');
+ $('study-predict').textContent=qText('predict');
+ for(const prefix of ['m','t'])quizSync(prefix);
+}
+
+mechSelect('meissner');thermalSelect('cool');thermalReset();resetMech();switchModule('mech');setLanguage('en');requestAnimationFrame(animate);
+});
+</script>
+</body>
+</html>
